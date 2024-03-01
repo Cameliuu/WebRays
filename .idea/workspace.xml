@@ -20,7 +20,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add Image Class" />
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add Byte masks">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/main.wasm" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,6 +73,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\repos\WebRays" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -85,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709315661244</updated>
-      <workItem from="1709315662581" duration="4323000" />
+      <workItem from="1709315662581" duration="7097000" />
     </task>
     <task id="LOCAL-00001" summary="Add Image Class">
       <created>1709320220907</created>
@@ -94,17 +107,31 @@
       <option name="project" value="LOCAL" />
       <updated>1709320220907</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add Byte masks">
+      <created>1709320292275</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709320292275</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Add Image Class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Image Class" />
+    <MESSAGE value="Add Byte masks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Byte masks" />
   </component>
 </project>

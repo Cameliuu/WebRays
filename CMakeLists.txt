@@ -3,4 +3,4 @@ project(WebRays)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(WebRays main.cpp App/App.h Image/Image.h App/App.cpp)
+add_executable(WebRays main.cpp App/App.h Image/Image.h App/App.cpp Color/Color.h Image/Image.cpp Color/Color.cpp)

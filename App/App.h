@@ -8,10 +8,10 @@
 class App{
     public:
         bool initialize(int width,int height);
-        void handle_events();
-        void main_loop();
+        void handleEvents();
+        void mainLoop();
 
-        static void static_main_loop();
+        static void staticMainLoop();
     static App* instance;
 
     private:

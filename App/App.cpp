@@ -20,8 +20,8 @@ bool App::initialize(int width, int height) {
         return true;
 }
 
-void App::main_loop() {
-    handle_events();
+void App::mainLoop() {
+    handleEvents();
 
     image.display();
 
@@ -37,12 +37,12 @@ void App::main_loop() {
 }
 
 
-void App::static_main_loop() {
-    App::instance->main_loop();
+void App::staticMainLoop() {
+    App::instance->mainLoop();
 }
 
 
-void App::handle_events() {
+void App::handleEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event) != 0) {
         if (event.type == SDL_QUIT) {
