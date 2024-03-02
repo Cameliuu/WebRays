@@ -4,7 +4,7 @@
 #include <iostream>
 #include <emscripten.h>
 #include "../Image/Image.h"
-
+#include "../Scene/scene.h"
 class App{
     public:
         bool initialize(int width,int height);
@@ -16,6 +16,7 @@ class App{
 
     private:
         Image image;
+        Scene scene;
         int width, height;
         SDL_Window* window;
         SDL_Renderer* renderer;

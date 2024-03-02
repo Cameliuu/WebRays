@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "../Color/color.h"
-
+#include <string.h>
 
 //COLORS MASKS
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -25,7 +25,10 @@ class Image{
     public:
     void initialize(int width, int height,SDL_Renderer* renderer);
     void display();
-    void setPixel(SDL_Surface* surface, int x, int y, Uint32 color);
+    void setPixel(int x, int y, Uint32 color);
+    int getWidth();
+    int getHeight();
+    static SDL_PixelFormat* pixel_format;
 private:
     int width,height;
     SDL_Texture* texture;

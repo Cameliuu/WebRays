@@ -23,6 +23,8 @@ bool App::initialize(int width, int height) {
 void App::mainLoop() {
     handleEvents();
 
+    scene.render(&image);
+
     image.display();
 
     if (!isRunning) {
