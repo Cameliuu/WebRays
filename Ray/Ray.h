@@ -7,6 +7,7 @@ class Ray{
     Vector3 pointAtParameter(float t) const;
     Vector3 getDirection() const;
     Vector3 getOrigin() const;
+
     private:
     Vector3 origin;
     Vector3 direction;

@@ -1,0 +1,18 @@
+#ifndef HITINFO_H
+#define HITINFO_H
+#include "../Vector3/Vector3.h"
+#include "../Ray/Ray.h"
+#include <iostream>
+class HitInfo{
+    public:
+
+        HitInfo(const float& t1, const float& t2,const Ray& ray, const Vector3& origin);
+        bool hit = false;
+        Vector3 getT1Normal() const;
+        Vector3 getT2Normal() const;
+    private:
+        float t1,t2;
+        Vector3 t1WorldPosition,t2WorldPosition;
+        Vector3 t1Normal,t2Normal;
+};
+#endif

@@ -1,6 +1,4 @@
-//
-// Created by Camel on 3/3/2024.
-//
+
 
 #include "Ray.h"
 
@@ -22,3 +20,5 @@ Vector3 Ray::getDirection() const {
 Vector3 Ray::getOrigin() const {
     return this->origin;
 }
+
+
