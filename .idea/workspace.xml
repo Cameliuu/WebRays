@@ -21,16 +21,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add Ray class">
-      <change afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logger/Logger.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logger/Logger.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Color/Color.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Color/Color.h" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ray/Ray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/Ray.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ray/Ray.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/Ray.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/main.wasm" afterDir="false" />
     </list>
@@ -83,12 +81,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -103,7 +101,9 @@
       <option name="presentableId" value="Default" />
       <updated>1709315661244</updated>
       <workItem from="1709315662581" duration="3272000" />
-      <workItem from="1709471936148" duration="13626000" />
+      <workItem from="1709471936148" duration="14374000" />
+      <workItem from="1709578204155" duration="6634000" />
+      <workItem from="1709658809185" duration="5226000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>

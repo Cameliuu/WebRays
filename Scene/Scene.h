@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "../Ray/ray.h"
 #include "../Objects/Sphere.h"
+#include <emscripten.h>
 class Scene {
     public:
       void render(Image* image);

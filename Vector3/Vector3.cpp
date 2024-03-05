@@ -22,7 +22,8 @@ void Vector3::SetY(float y) { this->y = y; }
 void Vector3::SetZ(float z) { this->z = z; }
 
 // METHODS
-float Vector3::Magnitude() const { return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2)); }
+float Vector3::Magnitude() const { return sqrt(x * x + y * y + z * z); }
+
 float Vector3::Dot(const Vector3& Other) const { return (this->x * Other.x) + (this->y * Other.y) + (this->z * Other.z); }
 
 Vector3 Vector3::Normalize() const

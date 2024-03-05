@@ -9,7 +9,9 @@ void Scene::render(Image *image) {
     float sphereRadius = 0.1f;  // Example sphere radius
     sphere.setCenter(sphereCenter);
     sphere.setRadius(sphereRadius);
+    Vector3 lightDir = Vector3(3.0f, 1.0f, -3.0f) - sphereCenter;
 
+    lightDir = lightDir.Normalize();
 
     for (int x = 0; x < width; ++x) {
         for (int y = 0; y < height; ++y) {
@@ -30,18 +32,22 @@ void Scene::render(Image *image) {
             HitInfo hitInfo = sphere.hit(ray);
             if(hitInfo.hit)
             {
-                // Calculate a simple diffuse lighting component based on the normal
-                Vector3 lightDir = Vector3(0.0f, 0.0f, -1.0f); // For simplicity, assume light comes from the same direction as the camera
-                lightDir.Normalize(); // Make sure the light direction is normalized
+                Vector3 normal = hitInfo.getT1Normal();
+                // Light coming from the camera
+                float dot = std::max(normal.Dot(lightDir), 0.0f); // Dot product, clamped to the range [0, 1]
+                //if(dot > 0.0f)
+                //if(x%100==0)
+                //emscripten_log(EM_LOG_CONSOLE,"dot :%f\n",dot);
+                // Assuming your light color is white for simplicity
+                Uint8 red = static_cast<Uint8>(dot * 255);
+                Uint8 green = static_cast<Uint8>(dot * 255);
+                Uint8 blue = static_cast<Uint8>(dot * 255);
 
-                // The dot product between the normal at intersection and light direction
-                float dot = lightDir.Dot(hitInfo.getT1Normal());
-                float intensity = std::max(dot, 0.0f); // Clamp the value between 0 and 1
-                //HIT
-                color.setColor(255,0,0,255*intensity,Image::pixel_format);
+                // Now we use these to set the color
+                color.setColor(red, 0, 0, 255,Image::pixel_format); // Omitting the pixel format for simplicity
             }
             else{
-                color.setColor(red,green,blue,255,Image::pixel_format);
+                color.setColor(0,0,0,255,Image::pixel_format);
                 //MISS
             }
 
