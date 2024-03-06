@@ -20,16 +20,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add Ray class">
-      <change afterPath="$PROJECT_DIR$/Logger/Logger.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logger/Logger.h" afterDir="false" />
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add basic diffuse lighting">
+      <change afterPath="$PROJECT_DIR$/Camera/Camera.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Camera/Camera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/main.wasm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,12 +78,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -103,7 +100,8 @@
       <workItem from="1709315662581" duration="3272000" />
       <workItem from="1709471936148" duration="14374000" />
       <workItem from="1709578204155" duration="6634000" />
-      <workItem from="1709658809185" duration="5226000" />
+      <workItem from="1709658809185" duration="7617000" />
+      <workItem from="1709709804519" duration="5020000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>
@@ -119,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709474317383</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add basic diffuse lighting">
+      <created>1709665578412</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709665578412</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +139,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Scene and Vector classes" />
     <MESSAGE value="Add Ray class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Ray class" />
+    <MESSAGE value="Add basic diffuse lighting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add basic diffuse lighting" />
   </component>
 </project>

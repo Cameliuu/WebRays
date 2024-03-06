@@ -4,12 +4,19 @@
 void Scene::render(Image *image) {
     int width = image->getWidth();
     int height = image->getHeight();
+
     // Simulate creating the sphere
     Vector3 sphereCenter(0.0f, 0.0f, -1.0f);  // Example sphere center
     float sphereRadius = 0.1f;  // Example sphere radius
     sphere.setCenter(sphereCenter);
     sphere.setRadius(sphereRadius);
-    Vector3 lightDir = Vector3(3.0f, 1.0f, -3.0f) - sphereCenter;
+
+                //Create and initialize the camera
+    Vector3 origin = Vector3(1.0f, 0.5f,0.0f);
+    camera.setAspectRatio((float)width/(float)height );
+    camera.setPosition(origin);
+
+    Vector3 lightDir = -(Vector3(-0.25f, -0.25f, 2.0f) - sphereCenter);
 
     lightDir = lightDir.Normalize();
 
@@ -20,11 +27,11 @@ void Scene::render(Image *image) {
             float u = (float)x / (float)(width-1);
             float v = (float)y / (float)(height-1);
 
-            //Create the RAY
-            Vector3 origin = Vector3(0.0f, 0.0f, 0.0f);
-            Vector3 direction = Vector3(u - 0.5f, v - 0.5f, -1.0f);
 
-            Ray ray = Ray(origin, direction);
+
+            //Vector3 direction = Vector3(u - 0.5f, v - 0.5f, -1.0f);
+
+            Ray ray = camera.shootRay(u,v);
             Uint8 red = static_cast<Uint8>(ray.getDirection().GetX() * 255.0f);
             Uint8 green = static_cast<Uint8>(ray.getDirection().GetY() * 255.0f);
             Uint8 blue = 128;

@@ -5,10 +5,12 @@
 #include "../Ray/ray.h"
 #include "../Objects/Sphere.h"
 #include <emscripten.h>
+#include "../Camera/Camera.h"
 class Scene {
     public:
       void render(Image* image);
     private:
         Sphere sphere;
+        Camera camera;
 };
 #endif
