@@ -1,6 +1,17 @@
 
 
 #include "App.h"
+void* renderThread(void* arg) {
+    Image* image = static_cast<Image*>(arg);
+
+    // Perform rendering calculations
+    App::instance->renderingStarted = true;
+    App::instance->getScene().render(image);
+
+    App::instance->renderingDone = true;
+
+    return nullptr;
+}
 App* App::instance = nullptr;
 bool App::initialize(int width, int height) {
         if(SDL_Init(SDL_INIT_VIDEO)!=0)
@@ -23,9 +34,29 @@ bool App::initialize(int width, int height) {
 void App::mainLoop() {
     handleEvents();
 
-    scene.render(&image);
+    scene.initialize(&image);
+    if (!renderingStarted) {
+        // Start the rendering thread only if it hasn't been started yet
+        pthread_t renderThreadId;
+        int rc = pthread_create(&renderThreadId, NULL, renderThread, &image);
+        if (rc) {
+            std::cerr << "Error: Unable to create thread," << rc << std::endl;
+            exit(-1);
+        }
 
-    image.display();
+    }
+
+    // Check if rendering is done
+    if (renderingDone) {
+        // Reset the flag for the next rendering
+        renderingDone = false;
+
+        // Display the rendered image
+        image.display();
+
+        // Reset renderingStarted if you want to render again
+        renderingStarted = false;
+    }
 
     if (!isRunning) {
         // Clean up and exit the loop
@@ -53,3 +84,9 @@ void App::handleEvents() {
 
     }
 }
+
+Scene App::getScene() {
+    return this->scene;
+}
+
+

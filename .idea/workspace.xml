@@ -20,13 +20,27 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add basic diffuse lighting">
-      <change afterPath="$PROJECT_DIR$/Camera/Camera.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Camera/Camera.h" afterDir="false" />
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add basic camera">
+      <change afterPath="$PROJECT_DIR$/Ui/ui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color/Color.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color/Color.h" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image/Image.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Image/Image.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Sphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/main.wasm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +52,14 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -57,6 +79,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -83,11 +106,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -101,7 +119,12 @@
       <workItem from="1709471936148" duration="14374000" />
       <workItem from="1709578204155" duration="6634000" />
       <workItem from="1709658809185" duration="7617000" />
-      <workItem from="1709709804519" duration="5020000" />
+      <workItem from="1709709804519" duration="8971000" />
+      <workItem from="1709848573410" duration="690000" />
+      <workItem from="1709980777486" duration="1872000" />
+      <workItem from="1709990421518" duration="9015000" />
+      <workItem from="1710068135686" duration="3412000" />
+      <workItem from="1710072109857" duration="373000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>
@@ -124,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709665578412</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add basic camera">
+      <created>1709716575307</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709716575307</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +170,7 @@
     <MESSAGE value="Add Scene and Vector classes" />
     <MESSAGE value="Add Ray class" />
     <MESSAGE value="Add basic diffuse lighting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add basic diffuse lighting" />
+    <MESSAGE value="Add basic camera" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add basic camera" />
   </component>
 </project>

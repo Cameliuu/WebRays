@@ -4,14 +4,17 @@
 #include <SDL.h>
 #include "../Ray/HitInfo.h"
 #include <cmath>
+#include "../Color/Color.h"
 class Object{
     public:
+        Object();
+        Object(const Color& color);
         virtual HitInfo hit(const Ray& ray) const = 0;
-        void setColor(const Uint32& color);
-        Uint32 getColor() const;
+        void setColor(const Color& color);
+        Color getColor() const;
 
-    private:
-        Uint32 color;
+    protected:
+        Color color;
 };
 
 #endif

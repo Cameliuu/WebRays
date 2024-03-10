@@ -2,10 +2,18 @@
 
 #include "Object.h"
 
-Uint32 Object::getColor() const {
+Color Object::getColor() const {
     return this->color;
 }
 
-void Object::setColor(const Uint32 &color) {
+void Object::setColor(const Color &color) {
+    this->color = color;
+}
+
+Object::Object() {
+
+}
+
+Object::Object(const Color &color) {
     this->color = color;
 }

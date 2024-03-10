@@ -5,13 +5,16 @@
 #include <emscripten.h>
 #include "../Image/Image.h"
 #include "../Scene/scene.h"
+#include <atomic>
 class App{
     public:
         bool initialize(int width,int height);
         void handleEvents();
         void mainLoop();
-
+        Scene getScene();
         static void staticMainLoop();
+        std::atomic<bool> renderingDone;
+        std::atomic<bool> renderingStarted;
     static App* instance;
 
     private:

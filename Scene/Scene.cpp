@@ -1,65 +1,76 @@
 
 #include "Scene.h"
 
-void Scene::render(Image *image) {
-    int width = image->getWidth();
-    int height = image->getHeight();
+void Scene::render(Image* image) {
+    Color color;
+    float min_t;
+    HitInfo closest_hit_info;
 
-    // Simulate creating the sphere
-    Vector3 sphereCenter(0.0f, 0.0f, -1.0f);  // Example sphere center
-    float sphereRadius = 0.1f;  // Example sphere radius
-    sphere.setCenter(sphereCenter);
-    sphere.setRadius(sphereRadius);
+    // Initialize the closest hit distance to a large number
+    min_t = std::numeric_limits<float>::infinity();
 
-                //Create and initialize the camera
-    Vector3 origin = Vector3(1.0f, 0.5f,0.0f);
-    camera.setAspectRatio((float)width/(float)height );
-    camera.setPosition(origin);
-
-    Vector3 lightDir = -(Vector3(-0.25f, -0.25f, 2.0f) - sphereCenter);
-
-    lightDir = lightDir.Normalize();
-
+    // Loop through each pixel
     for (int x = 0; x < width; ++x) {
         for (int y = 0; y < height; ++y) {
-            //Get U and V normalized coordinates
-            // (0,1)
-            float u = (float)x / (float)(width-1);
-            float v = (float)y / (float)(height-1);
+            float u = static_cast<float>(x) / (width - 1);
+            float v = static_cast<float>(y) / (height - 1);
 
+            Ray ray = camera.shootRay(u, v);
 
+            // Reset the closest hit for this pixel
+            closest_hit_info.hit = false;
+            min_t = std::numeric_limits<float>::infinity();
 
-            //Vector3 direction = Vector3(u - 0.5f, v - 0.5f, -1.0f);
+            // Loop through each object to find the closest hit
+            for (int i = 0; i < objects.size(); i++) {
+                HitInfo hitInfo = objects.at(i)->hit(ray);
 
-            Ray ray = camera.shootRay(u,v);
-            Uint8 red = static_cast<Uint8>(ray.getDirection().GetX() * 255.0f);
-            Uint8 green = static_cast<Uint8>(ray.getDirection().GetY() * 255.0f);
-            Uint8 blue = 128;
-            Color color = Color();
-            HitInfo hitInfo = sphere.hit(ray);
-            if(hitInfo.hit)
-            {
-                Vector3 normal = hitInfo.getT1Normal();
-                // Light coming from the camera
-                float dot = std::max(normal.Dot(lightDir), 0.0f); // Dot product, clamped to the range [0, 1]
-                //if(dot > 0.0f)
-                //if(x%100==0)
-                //emscripten_log(EM_LOG_CONSOLE,"dot :%f\n",dot);
-                // Assuming your light color is white for simplicity
-                Uint8 red = static_cast<Uint8>(dot * 255);
-                Uint8 green = static_cast<Uint8>(dot * 255);
-                Uint8 blue = static_cast<Uint8>(dot * 255);
-
-                // Now we use these to set the color
-                color.setColor(red, 0, 0, 255,Image::pixel_format); // Omitting the pixel format for simplicity
-            }
-            else{
-                color.setColor(0,0,0,255,Image::pixel_format);
-                //MISS
+                if (hitInfo.hit) {
+                    float t1 = hitInfo.getT1();
+                    if (t1 >= 0 && t1 < min_t) {  // Check if this hit is closer
+                        min_t = t1;
+                        closest_hit_info = hitInfo;
+                    }
+                }
             }
 
+            // Color the pixel based on the closest hit
+            if (closest_hit_info.hit) {
+                Vector3 normal = closest_hit_info.getT1Normal();
+                float dot = std::max(normal.Dot(lightDir), 0.0f);
+
+                Uint8 red = static_cast<Uint8>(dot * closest_hit_info.getColor().getRedValue());
+                Uint8 green = static_cast<Uint8>(dot * closest_hit_info.getColor().getGreenValue());
+                Uint8 blue = static_cast<Uint8>(dot * closest_hit_info.getColor().getBlueValue());
+
+                color.setColor(red, green, blue, 255, Image::pixel_format);
+            } else {
+                color.setColor(135, 206, 235, 255, Image::pixel_format);
+            }
 
             image->setPixel(x, y, color.getMappedColor());
         }
     }
+}
+
+void Scene::initialize(Image* image) {
+    // Simulate creating the sphere
+    Vector3 sphereCenter1(1.0f, 0.0f, -1.0f);  // Example sphere center
+    Vector3 sphereCenter2(0.0f, 0.0f, -1.5f);  // Example sphere center
+    float sphereRadius = 0.1f;  // Example sphere radius
+    objects.push_back(std::make_shared<Sphere>(sphereCenter1, sphereRadius, Color::Red));
+    objects.push_back(std::make_shared<Sphere>(sphereCenter2, sphereRadius, Color::Blue));
+    this->width = image->getWidth();
+    this-> height = image->getHeight();
+
+
+    //Create and initialize the light
+    Vector3 lightDir = -(Vector3(-0.25f, -0.25f, 2.0f) - sphereCenter1);
+    lightDir = lightDir.Normalize();
+    this->lightDir = lightDir;
+
+    //Create and initialize the camera
+    Vector3 origin = Vector3(0.0f, 0.0f, 0.0f);
+    camera.setAspectRatio((float) width / (float) height);
+    camera.setPosition(origin);
 }

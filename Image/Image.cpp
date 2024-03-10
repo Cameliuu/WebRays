@@ -43,10 +43,6 @@ void Image::display() {
     }
 
 
-    Uint32 format;
-    int access, w, h;
-    SDL_QueryTexture(texture, &format, &access, &w, &h);
-    std::cout << "Texture format: " << SDL_GetPixelFormatName(format) << std::endl;
 
     // Clear the renderer
     SDL_RenderClear(renderer);

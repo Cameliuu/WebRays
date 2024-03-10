@@ -55,3 +55,7 @@ Ray Camera::shootRay(float u, float v) {
 
     return Ray(origin, direction);
 }
+
+void Camera::setPoisitionX(const float &x) {
+    this->position.SetX(x);
+}

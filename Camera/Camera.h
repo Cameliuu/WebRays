@@ -11,6 +11,7 @@ class Camera{
         void setLookAt(const Vector3& look_at);
         void setAspectRatio(const float& aspect_ratio);
         void setFov(const float& fov);
+        void setPoisitionX(const float& x);
                     //GETTERS
         Vector3 getPosition() const;
         Vector3 getLookAt() const;

@@ -10,7 +10,7 @@ HitInfo Sphere::hit(const Ray &ray) const {
     float discriminant = b * b - 4 * a * c;  // Discriminant of the quadratic equation
     float t1 = (float)(-b + sqrt( discriminant) )/ 2*a;
     float t2 = (float)(-b - sqrt( discriminant) )/ 2*a;
-    HitInfo hitInfo = HitInfo(t1,t2,ray,this->center);
+    HitInfo hitInfo = HitInfo(t1,t2,ray,this->center,this->getColor());
     if(discriminant > 0)
     {
         hitInfo.hit = true;
@@ -37,4 +37,13 @@ Vector3 Sphere::getCenter() const {
 
 float Sphere::getRadius() const {
     return this->radius;
+}
+
+Sphere::Sphere(const Vector3 &center, const float &radius, const Color &color) : Object(color) {
+    this->center = center;
+    this->radius = radius;
+}
+
+Color Sphere::getColor() const {
+    return this->color;
 }
