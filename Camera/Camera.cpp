@@ -59,3 +59,11 @@ Ray Camera::shootRay(float u, float v) {
 void Camera::setPoisitionX(const float &x) {
     this->position.SetX(x);
 }
+
+void Camera::setPoisitionY(const float &y) {
+    this->position.SetY(y);
+}
+
+void Camera::setPoisitionZ(const float &z) {
+    this->position.SetZ(z);
+}

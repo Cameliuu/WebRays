@@ -6,6 +6,7 @@ void Scene::render(Image* image) {
     float min_t;
     HitInfo closest_hit_info;
 
+
     // Initialize the closest hit distance to a large number
     min_t = std::numeric_limits<float>::infinity();
 
@@ -54,6 +55,7 @@ void Scene::render(Image* image) {
 }
 
 void Scene::initialize(Image* image) {
+    emscripten_out("asdasda");
     // Simulate creating the sphere
     Vector3 sphereCenter1(1.0f, 0.0f, -1.0f);  // Example sphere center
     Vector3 sphereCenter2(0.0f, 0.0f, -1.5f);  // Example sphere center
@@ -74,3 +76,9 @@ void Scene::initialize(Image* image) {
     camera.setAspectRatio((float) width / (float) height);
     camera.setPosition(origin);
 }
+
+Camera &Scene::getCamera() {
+    return this->camera;
+}
+
+

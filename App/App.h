@@ -11,7 +11,7 @@ class App{
         bool initialize(int width,int height);
         void handleEvents();
         void mainLoop();
-        Scene getScene();
+        Scene& getScene();
         static void staticMainLoop();
         std::atomic<bool> renderingDone;
         std::atomic<bool> renderingStarted;

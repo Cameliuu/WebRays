@@ -11,10 +11,13 @@
 #include <SDL.H>
 #include <vector>
 #include <memory>
+#include <emscripten.h>
+#include <emscripten/html5.h>
 class Scene {
     public:
       void render(Image* image);
       void initialize(Image* image);
+      Camera& getCamera();
     private:
         std::vector<std::shared_ptr<Object>> objects;
         int width, height;

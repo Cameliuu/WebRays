@@ -28,13 +28,14 @@ bool App::initialize(int width, int height) {
         this->height = height;
         isRunning = true;
         image.initialize(1280,720,this->renderer);
+        scene.initialize(&image);
         return true;
 }
 
 void App::mainLoop() {
     handleEvents();
 
-    scene.initialize(&image);
+
     if (!renderingStarted) {
         // Start the rendering thread only if it hasn't been started yet
         pthread_t renderThreadId;
@@ -81,11 +82,40 @@ void App::handleEvents() {
         if (event.type == SDL_QUIT) {
             isRunning = false;
         }
+        else if(event.type == SDL_KEYDOWN) {
+            Camera& camera = App::instance->getScene().getCamera();
+            Vector3 currentPos = camera.getPosition();
+            switch (event.key.keysym.sym) {
+                case SDLK_a: // Left
+                    camera.setPoisitionX(currentPos.GetX()-0.1f);
+                    break;
+                case SDLK_d: // Right
+                    camera.setPoisitionX(currentPos.GetX()+0.1f);
+                    break;
+                case SDLK_w: // Up
+                    camera.setPoisitionZ(currentPos.GetZ()-0.1f);
+                    break;
+                case SDLK_s: // Down
+                    camera.setPoisitionZ(currentPos.GetZ()+0.1f);
+                    break;
+                case SDLK_SPACE:
+                    if (event.key.keysym.mod & KMOD_SHIFT) {
+                        // Shift is down, so move camera up
+                        camera.setPoisitionY(currentPos.GetY() + 0.1f);
+                    } else {
+                        // Shift is not down, move camera down
+                        camera.setPoisitionY(currentPos.GetY() - 0.1f);
+                    }
+                    break;
+
+
+            }
+        }
 
     }
 }
 
-Scene App::getScene() {
+Scene& App::getScene() {
     return this->scene;
 }
 

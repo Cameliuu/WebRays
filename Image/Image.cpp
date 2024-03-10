@@ -34,6 +34,7 @@ void Image::display() {
     SDL_UnlockSurface(surface);
 
     // Create a texture from the surface pixels
+
     texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface); // we got a texture out of it, no need for the surface anymore
 
