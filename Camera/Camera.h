@@ -14,11 +14,14 @@ class Camera{
         void setPoisitionX(const float& x);
         void setPoisitionY(const float& Y);
         void setPoisitionZ(const float& Z);
+        void setYaw(const float& yaw);
+        void setPitch(const float& pitch);
                     //GETTERS
         Vector3 getPosition() const;
         Vector3 getLookAt() const;
         float getFov() const;
         float getAspectRatio() const;
+
 
                 //PUBLIC METHODS
         Ray  shootRay(float u,float v);
@@ -27,5 +30,7 @@ class Camera{
     Vector3 look_at;
     float aspect_ratio;
     float fov;
+    float pitch;
+    float yaw;
 };
 #endif

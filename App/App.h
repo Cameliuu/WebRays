@@ -9,7 +9,7 @@
 class App{
     public:
         bool initialize(int width,int height);
-        void handleEvents();
+        void handleEvents(float deltaTime);
         void mainLoop();
         Scene& getScene();
         static void staticMainLoop();

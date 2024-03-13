@@ -75,6 +75,8 @@ void Scene::initialize(Image* image) {
     Vector3 origin = Vector3(0.0f, 0.0f, 0.0f);
     camera.setAspectRatio((float) width / (float) height);
     camera.setPosition(origin);
+    camera.pitch = 0;
+    camera.yaw = 0;
 }
 
 Camera &Scene::getCamera() {

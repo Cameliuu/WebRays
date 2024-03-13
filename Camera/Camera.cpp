@@ -67,3 +67,13 @@ void Camera::setPoisitionY(const float &y) {
 void Camera::setPoisitionZ(const float &z) {
     this->position.SetZ(z);
 }
+
+void Camera::setYaw(const float &yaw) {
+    this->yaw = yaw;
+
+}
+
+void Camera::setPitch(const float &pitch) {
+    this->pitch = pitch;
+
+}

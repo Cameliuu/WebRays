@@ -33,7 +33,7 @@ bool App::initialize(int width, int height) {
 }
 
 void App::mainLoop() {
-    handleEvents();
+
 
 
     if (!renderingStarted) {
