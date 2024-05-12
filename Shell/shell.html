@@ -47,6 +47,7 @@
   </style>
 </head>
 <body>
+
 <hr/>
 <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"><strong>emscripten</strong></center></figure>
 <div class="emscripten" id="status">Downloading...</div>
@@ -54,7 +55,7 @@
   <progress value="0" max="100" id="progress" hidden=1></progress>
 </div>
 <div class="emscripten_border">
-  <input type="range" min="-10" max="10" value="0" class="slider" id="cameraX">
+  <input type="checkbox" id="checkbox" name="vehicle1" value="Bike">
   <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
 </div>
 <hr/>

@@ -12,6 +12,30 @@ void* renderThread(void* arg) {
 
     return nullptr;
 }
+EM_BOOL checkbox_callback(
+    int eventType,
+    const EmscriptenMouseEvent *mouseEvent,
+    void *userData)
+{
+    if (eventType == EMSCRIPTEN_EVENT_CLICK) {
+        // Access the App instance
+        App* appInstance = static_cast<App*>(userData);
+
+        // Access the Scene instance from the App instance
+        Scene& scene = appInstance->getScene();
+
+        // Access the objects vector from the Scene instance
+        const std::vector<std::shared_ptr<Object>>& objects = scene.getObjects();
+
+        // Iterate over the objects vector and do something
+        for (const auto& object : objects) {
+            emscripten_out("merge");
+        }
+    }
+
+    return 0;
+}
+
 App* App::instance = nullptr;
 bool App::initialize(int width, int height) {
         if(SDL_Init(SDL_INIT_VIDEO)!=0)
@@ -29,6 +53,11 @@ bool App::initialize(int width, int height) {
         isRunning = true;
         image.initialize(1280,720,this->renderer);
         scene.initialize(&image);
+    emscripten_set_click_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW,
+    this,
+    1,
+    checkbox_callback
+);
         return true;
 }
 
@@ -71,6 +100,7 @@ void App::mainLoop() {
 }
 
 
+
 void App::staticMainLoop() {
     App::instance->mainLoop();
 }
@@ -83,6 +113,7 @@ void App::handleEvents() {
             isRunning = false;
         }
         else if(event.type == SDL_KEYDOWN) {
+            emscripten_out("Intra pe keydown");
             Camera& camera = App::instance->getScene().getCamera();
             Vector3 currentPos = camera.getPosition();
             switch (event.key.keysym.sym) {

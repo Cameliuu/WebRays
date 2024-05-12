@@ -21,13 +21,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add multithreading for rendering and limit frame rate to 60">
+      <change afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Sphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shell/shell.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shell/shell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/main.wasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.worker.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +70,9 @@
     <option name="majorVersion" value="2023" />
     <option name="minorVersion" value="1.3" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2d65PKxsnzkatpCEasTaxYTi91k" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -66,13 +82,15 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/repos/WebRays/Vector3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/repos/WebRays&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -87,7 +105,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
+    <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -114,6 +137,8 @@
       <workItem from="1710102692049" duration="1084000" />
       <workItem from="1710260436758" duration="1090000" />
       <workItem from="1710363825227" duration="1000" />
+      <workItem from="1714993880897" duration="81000" />
+      <workItem from="1714993971533" duration="20472000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>

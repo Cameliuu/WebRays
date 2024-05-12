@@ -8,7 +8,7 @@ class Color{
     static const Color Red;
     static const Color Black;
     static const Color Blue;
-
+    static const Color Green;
     Color();
     Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format);
     Uint32 getMappedColor() const;

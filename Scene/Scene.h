@@ -13,13 +13,18 @@
 #include <memory>
 #include <emscripten.h>
 #include <emscripten/html5.h>
+
+#include "../Materials/Material.h"
+
 class Scene {
     public:
       void render(Image* image);
       void initialize(Image* image);
       Camera& getCamera();
+    const std::vector<std::shared_ptr<Object>>& getObjects() const;
     private:
         std::vector<std::shared_ptr<Object>> objects;
+        std::vector<std::shared_ptr<Material>> materials;
         int width, height;
 
         Camera camera;

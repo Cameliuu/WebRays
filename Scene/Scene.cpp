@@ -40,9 +40,9 @@ void Scene::render(Image* image) {
                 Vector3 normal = closest_hit_info.getT1Normal();
                 float dot = std::max(normal.Dot(lightDir), 0.0f);
 
-                Uint8 red = static_cast<Uint8>(dot * closest_hit_info.getColor().getRedValue());
-                Uint8 green = static_cast<Uint8>(dot * closest_hit_info.getColor().getGreenValue());
-                Uint8 blue = static_cast<Uint8>(dot * closest_hit_info.getColor().getBlueValue());
+                Uint8 red = static_cast<Uint8>(dot * closest_hit_info.getMaterial()->getAlbedo().getRedValue());
+                Uint8 green = static_cast<Uint8>(dot * closest_hit_info.getMaterial()->getAlbedo().getGreenValue());
+                Uint8 blue = static_cast<Uint8>(dot * closest_hit_info.getMaterial()->getAlbedo().getBlueValue());
 
                 color.setColor(red, green, blue, 255, Image::pixel_format);
             } else {
@@ -55,13 +55,19 @@ void Scene::render(Image* image) {
 }
 
 void Scene::initialize(Image* image) {
-    emscripten_out("asdasda");
+
+    //Create and initialize the materials
+    materials.push_back(std::make_shared<Material>(Color::Green,1.0f,0.0f));
+    materials.push_back(std::make_shared<Material>(Color::Blue,0.0f,0.0f));
+
     // Simulate creating the sphere
     Vector3 sphereCenter1(1.0f, 0.0f, -1.0f);  // Example sphere center
     Vector3 sphereCenter2(0.0f, 0.0f, -1.5f);  // Example sphere center
     float sphereRadius = 0.1f;  // Example sphere radius
-    objects.push_back(std::make_shared<Sphere>(sphereCenter1, sphereRadius, Color::Red));
-    objects.push_back(std::make_shared<Sphere>(sphereCenter2, sphereRadius, Color::Blue));
+    objects.push_back(std::make_shared<Sphere>(sphereCenter1, sphereRadius,materials.at(0)));
+    objects.push_back(std::make_shared<Sphere>(sphereCenter2, sphereRadius, materials.at(1)));
+
+
     this->width = image->getWidth();
     this-> height = image->getHeight();
 
@@ -75,12 +81,18 @@ void Scene::initialize(Image* image) {
     Vector3 origin = Vector3(0.0f, 0.0f, 0.0f);
     camera.setAspectRatio((float) width / (float) height);
     camera.setPosition(origin);
-    camera.pitch = 0;
-    camera.yaw = 0;
+    camera.setPitch(0);
+    camera.setYaw(0);
+
 }
 
 Camera &Scene::getCamera() {
     return this->camera;
+}
+
+const std::vector<std::shared_ptr<Object>>& Scene::getObjects() const
+{
+    return this->objects;
 }
 
 

@@ -9,12 +9,13 @@
 class App{
     public:
         bool initialize(int width,int height);
-        void handleEvents(float deltaTime);
+        void handleEvents();
         void mainLoop();
         Scene& getScene();
         static void staticMainLoop();
         std::atomic<bool> renderingDone;
         std::atomic<bool> renderingStarted;
+
     static App* instance;
 
     private:

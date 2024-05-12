@@ -1,19 +1,17 @@
-
-
 #include "Object.h"
 
-Color Object::getColor() const {
-    return this->color;
+Object::Object() {}
+
+Object::Object(std::shared_ptr<Material> material) : material(material) {}
+
+HitInfo Object::hit(const Ray& ray) const {
+    // Implement hit function for your specific object
 }
 
-void Object::setColor(const Color &color) {
-    this->color = color;
+void Object::setMaterial(std::shared_ptr<Material> material) {
+    this->material = material;
 }
 
-Object::Object() {
-
-}
-
-Object::Object(const Color &color) {
-    this->color = color;
+std::shared_ptr<Material> Object::getMaterial() const {
+    return this->material;
 }
