@@ -42,7 +42,7 @@ Vector3 Vector3::Normalize() const
 // OPERATOR OVERLOADS
 Vector3 Vector3::operator+(const Vector3& Other) const { return Vector3(this->x + Other.x, this->y + Other.y, this->z + Other.z); }
 Vector3 Vector3::operator-(const Vector3& Other) const { return Vector3(this->x - Other.x, this->y - Other.y, this->z - Other.z); }
-Vector3 Vector3::operator*(const float value) const { return Vector3(this->x * value, this->y * value, this->z * value); }
+Vector3 Vector3::operator*(float value) const { return {this->x * value, this->y * value, this->z * value}; }
 bool Vector3::operator==(const Vector3& Other) const { return (this->x == Other.x) && (this->y == Other.y) && (this->z == Other.z); }
 bool Vector3::operator!=(const Vector3& Other) const { return !(*this == Other); }
 Vector3 Vector3::operator-() const { return Vector3(-this->x, -this->y, -this->z); }

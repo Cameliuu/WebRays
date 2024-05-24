@@ -58,6 +58,7 @@ bool App::initialize(int width, int height) {
     1,
     checkbox_callback
 );
+
         return true;
 }
 

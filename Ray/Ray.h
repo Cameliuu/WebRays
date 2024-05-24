@@ -3,6 +3,7 @@
 #include "../Vector3/Vector3.h"
 class Ray{
     public:
+    Ray()= default;
     Ray(const Vector3& origin, const Vector3& direction);
     Vector3 pointAtParameter(float t) const;
     Vector3 getDirection() const;

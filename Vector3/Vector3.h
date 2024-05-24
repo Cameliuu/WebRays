@@ -32,7 +32,7 @@ public:
     // OPERATOR OVERLOADS
     Vector3 operator+(const Vector3& Other) const;
     Vector3 operator-(const Vector3& Other) const;
-    Vector3 operator*(const float value) const;
+    Vector3 operator*( float value) const;
     Vector3 operator-() const;
     bool operator==(const Vector3& Other) const;
     bool operator!=(const Vector3& Other) const;

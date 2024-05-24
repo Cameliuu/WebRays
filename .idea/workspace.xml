@@ -20,27 +20,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add multithreading for rendering and limit frame rate to 60">
-      <change afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Added Materials System">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Sphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color/Color.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color/Color.h" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Materials/Material.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Materials/Material.h" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ray/HitInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ray/HitInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ray/Ray.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/Ray.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shell/shell.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shell/shell.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/main.wasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.h" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.wasm.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.worker.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +61,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Cameliuu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Cameliuu/WebRays.git&quot;,
+    &quot;accountId&quot;: &quot;bf027b29-272c-4a22-b9c3-993ce6e974f0&quot;
+  }
+}</component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="8tgdh0w7" />
   </component>
@@ -110,11 +121,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -138,7 +144,12 @@
       <workItem from="1710260436758" duration="1090000" />
       <workItem from="1710363825227" duration="1000" />
       <workItem from="1714993880897" duration="81000" />
-      <workItem from="1714993971533" duration="20472000" />
+      <workItem from="1714993971533" duration="53287000" />
+      <workItem from="1716040009679" duration="594000" />
+      <workItem from="1716041235307" duration="3896000" />
+      <workItem from="1716189139212" duration="3155000" />
+      <workItem from="1716568496926" duration="3007000" />
+      <workItem from="1716571864391" duration="2503000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>
@@ -175,17 +186,24 @@
       <option name="project" value="LOCAL" />
       <updated>1710072536295</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added Materials System">
+      <option name="closed" value="true" />
+      <created>1715530285589</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715530285589</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
-    <isAutomaticEditVcpkgJson value="true" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Scene and Vector classes" />
@@ -193,6 +211,7 @@
     <MESSAGE value="Add basic diffuse lighting" />
     <MESSAGE value="Add basic camera" />
     <MESSAGE value="Add multithreading for rendering and limit frame rate to 60" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add multithreading for rendering and limit frame rate to 60" />
+    <MESSAGE value="Added Materials System" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Materials System" />
   </component>
 </project>
