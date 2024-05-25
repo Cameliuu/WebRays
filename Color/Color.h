@@ -13,7 +13,7 @@ public:
     static const Color Green;
     static const Color Black;
     static const Color Blue;
-
+    static const Color White;
     // Constructors
     Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format);
     Color();
@@ -22,6 +22,7 @@ public:
     Uint8 getRedValue() const;
     Uint8 getGreenValue() const;
     Uint8 getBlueValue() const;
+    Uint8 getAlphaValue() const;
     Uint32 getMappedColor() const;
 
     // Method to get color string
@@ -39,7 +40,10 @@ public:
     Color operator/(float value);
     Color operator/(double value);
     Color operator+(const Color& other) const;
+    Color operator*(const Color& other) const;
 
+    //Methos
+    Color addWithoutClamping(const Color& other) const;
     // Overloaded stream insertion operator
     friend std::ostream& operator<<(std::ostream& os, const Color& color);
 

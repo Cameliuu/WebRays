@@ -35,5 +35,6 @@ class Scene {
 
         Camera camera;
         Vector3 lightDir;
+        Color lightColor;
 };
 #endif

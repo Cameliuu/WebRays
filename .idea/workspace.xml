@@ -20,26 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Added Materials System">
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add anti-aliasing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Color/Color.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Color/Color.h" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Materials/Material.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Materials/Material.h" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ray/HitInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/HitInfo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ray/Ray.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ray/Ray.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.h" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.wasm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.wasm.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.worker.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +137,8 @@
       <workItem from="1716041235307" duration="3896000" />
       <workItem from="1716189139212" duration="3155000" />
       <workItem from="1716568496926" duration="3007000" />
-      <workItem from="1716571864391" duration="2503000" />
+      <workItem from="1716571864391" duration="8971000" />
+      <workItem from="1716630756284" duration="9783000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>
@@ -194,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715530285589</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add anti-aliasing">
+      <option name="closed" value="true" />
+      <created>1716574417081</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716574417081</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +209,7 @@
     <MESSAGE value="Add basic camera" />
     <MESSAGE value="Add multithreading for rendering and limit frame rate to 60" />
     <MESSAGE value="Added Materials System" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Materials System" />
+    <MESSAGE value="Add anti-aliasing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add anti-aliasing" />
   </component>
 </project>

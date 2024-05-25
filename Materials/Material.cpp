@@ -4,32 +4,42 @@
 
 #include "Material.h"
 
-Color Material::getAlbedo()
+Color Material::getAmbient() const
 {
-    return this->_albedo;
+    return this->_ambient;
 }
 
-float Material::getRoughness()
+Color Material::getDiffuse() const
 {
-    return this->_roughness;
+    return  this->_diffuse;
 }
 
-float Material::getMetallicValue()
+Color Material::getSpecular() const
 {
-    return this->_metallic;
+    return this->_specular;
 }
 
-void Material::setAlbedo(Color albedo)
+float Material::getShininess() const
 {
-    this->_albedo = albedo;
+    return this->_shininess;
 }
 
-void Material::setRoughness(float roughness)
+void Material::setAmbient(Color ambient)
 {
-    this -> _roughness = roughness;
+    this->_ambient = ambient;
 }
 
-void Material::setMetallicValue(float metallic)
+void Material::setDiffuse(Color diffuse)
 {
-    this -> _metallic = metallic;
+    this -> _diffuse = diffuse;
+}
+
+void Material::setSpecular(Color specular)
+{
+    this->_specular = specular;
+}
+
+void Material::setShininess(float shininess)
+{
+    this->_shininess = shininess;
 }

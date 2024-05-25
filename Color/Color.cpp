@@ -1,6 +1,7 @@
 #include "Color.h"
 
 // Define static member variables
+const Color Color::White = Color(255, 255, 255, 255, Image::pixel_format);
 const Color Color::Red = Color(255, 0, 0, 255, Image::pixel_format);
 const Color Color::Green = Color(0, 255, 0, 255, Image::pixel_format);
 const Color Color::Black = Color(0, 0, 0, 255, Image::pixel_format);
@@ -35,6 +36,9 @@ Uint8 Color::getGreenValue() const {
 
 Uint8 Color::getBlueValue() const {
     return this->blue_value;
+}
+Uint8 Color::getAlphaValue() const {
+    return this->alpha_value;
 }
 
 Uint32 Color::getMappedColor() const {
@@ -79,12 +83,52 @@ Color Color::operator/(double value) {
 
 // Overloaded addition operator
 Color Color::operator+(const Color& other) const {
+    Uint8 newRed = std::min(static_cast<int>(red_value) + static_cast<int>(other.red_value),255);
+    Uint8 newGreen = std::min(static_cast<int>(green_value) + static_cast<int>(other.green_value),255);
+    Uint8 newBlue = std::min(static_cast<int>(blue_value) + static_cast<int>(other.blue_value),255);
+    Uint8 newAlpha = std::min(static_cast<int>(alpha_value) + static_cast<int>(other.alpha_value),255);
+    return Color(newRed, newGreen, newBlue, newAlpha, Image::pixel_format);
+}
+
+Color Color::operator*(const Color& other) const
+{
+
+    // Normalize the colors to the 0.0-1.0 range
+    float r1 = red_value / 255.0f;
+    float g1 = green_value / 255.0f;
+    float b1 = blue_value / 255.0f;
+    float a1 = alpha_value / 255.0f;
+
+    float r2 = other.getRedValue() / 255.0f;
+    float g2 = other.getGreenValue() / 255.0f;
+    float b2 = other.getBlueValue() / 255.0f;
+    float a2 = other.getAlphaValue() / 255.0f;
+
+    // Multiply the normalized values
+    float rResult = r1 * r2;
+    float gResult = g1 * g2;
+    float bResult = b1 * b2;
+    float aResult = a1 * a2;
+
+    // Convert back to the 0-255 range
+    unsigned char newRed = static_cast<unsigned char>(rResult * 255);
+    unsigned char newGreen = static_cast<unsigned char>(gResult * 255);
+    unsigned char newBlue = static_cast<unsigned char>(bResult * 255);
+    unsigned char newAlpha = static_cast<unsigned char>(aResult * 255);
+
+    return Color(newRed, newGreen, newBlue, alpha_value, Image::pixel_format);
+
+}
+
+Color Color::addWithoutClamping(const Color& other) const
+{
     Uint8 newRed = static_cast<int>(red_value) + static_cast<int>(other.red_value);
     Uint8 newGreen = static_cast<int>(green_value) + static_cast<int>(other.green_value);
     Uint8 newBlue = static_cast<int>(blue_value) + static_cast<int>(other.blue_value);
     Uint8 newAlpha = static_cast<int>(alpha_value) + static_cast<int>(other.alpha_value);
     return Color(newRed, newGreen, newBlue, newAlpha, Image::pixel_format);
 }
+
 
 // Overloaded stream insertion operator
 std::ostream& operator<<(std::ostream& os, const Color& color) {
