@@ -2,6 +2,8 @@
 #include <cstdlib>  // For rand()
 #include <ctime>    // For seeding rand()
 
+#include "../Lights/DirectionalLight.h"
+
 void Scene::render(Image* image) {
             const int samples_per_pixel = 16; // Number of samples per pixel for anti-aliasing
     std::srand(static_cast<unsigned int>(std::time(0))); // Seed the random number generator
@@ -68,32 +70,36 @@ Color Scene::traceRay(const Ray& ray, int depth) {
     //make sure you always normalize the relevant vectors to ensure they're actual unit vectors.
     //Forgetting to normalize a vector is a popular mistake.
     if (closest_hit_info.hit) {
-       //ambient
-        Color ambient =  lightColor * closest_hit_info.getMaterial()->getAmbient() * 0.1f;
+        for(std::shared_ptr<DirectionalLight> light: lights)
+        {
+            //ambient
+            Color ambient =  light->getColor() * closest_hit_info.getMaterial()->getAmbient() * 0.1f;
 
-        //diffuse
-        Vector3 normal = closest_hit_info.getT1Normal();
-        float diff = std::max(normal.Dot(lightDir),0.0f);
-        Color diffuse =  lightColor * (closest_hit_info.getMaterial()->getDiffuse() * diff);
+            //diffuse
+            Vector3 normal = closest_hit_info.getT1Normal();
+            float diff = std::max(normal.Dot(light->getDirection()),0.0f);
+            Color diffuse =  light->getColor() * (closest_hit_info.getMaterial()->getDiffuse() * diff);
 
-        //specular
-        Vector3 lightDirection = - lightDir;
-        Vector3 viewDir = (camera.getPosition() - closest_hit_info.getT1Normal()).Normalize();
+            //specular
+            Vector3 lightDirection = - light->getDirection();
+            Vector3 viewDir = (camera.getPosition() - closest_hit_info.getT1Normal()).Normalize();
 
-        Vector3 reflectDir = (normal*(normal.Dot(lightDirection)) * 2.0f) - lightDirection;
-        float spec = pow(std::max(viewDir.Dot(reflectDir),0.0f),closest_hit_info.getMaterial()->getShininess());
-        Color specular = lightColor * (closest_hit_info.getMaterial()->getSpecular() * spec);
-        return ambient + diffuse + specular;
-    }
+            Vector3 reflectDir = (normal*(normal.Dot(lightDirection)) * 2.0f) - lightDirection;
+            float spec = pow(std::max(viewDir.Dot(reflectDir),0.0f),closest_hit_info.getMaterial()->getShininess());
+            Color specular = light->getColor() * (closest_hit_info.getMaterial()->getSpecular() * spec);
+            return ambient + diffuse + specular;
+        }
 
-    // Return background color if no hit
+        // Return background color if no hit
+
+        }
     return Color(0, 0, 0, 0, Image::pixel_format);
 }
 
 void Scene::initialize(Image* image) {
     // Create and initialize the materials
     materials.push_back(std::make_shared<Material>(Color::Red, Color::Red, Color::White,256.0f));
-    materials.push_back(std::make_shared<Material>(Color::Green, Color::Green, Color::White,32.0f));
+    materials.push_back(std::make_shared<Material>(Color::Blue, Color::Blue, Color::White,32.0f));
 
     // Simulate creating the spheres
     Vector3 sphereCenter1(0.35f, 0.0f, -1.0f); // Position the sphere further away
@@ -108,8 +114,7 @@ void Scene::initialize(Image* image) {
     // Create and initialize the light
     Vector3 lightDir = -(Vector3(-0.2f, -0.2f, 0.0f) - sphereCenter1); // Changed light direction
     lightDir = lightDir.Normalize();
-    this->lightColor = Color(255,255,255,255,Image::pixel_format);
-    this->lightDir = lightDir;
+    this->lights.push_back(std::make_shared<DirectionalLight>(lightDir,Color::White));
 
     // Create and initialize the camera
     Vector3 origin = Vector3(0.0f, 0.0f, 1.0f); // Move the camera back

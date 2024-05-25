@@ -8,6 +8,7 @@
 #include "../Camera/Camera.h"
 #include <emscripten/wasm_worker.h>
 #include "../Color/Color.h"
+#include "../Lights/DirectionalLight.h"
 #include <SDL.H>
 #include <vector>
 #include <memory>
@@ -31,10 +32,10 @@ class Scene {
     private:
         std::vector<std::shared_ptr<Object>> objects;
         std::vector<std::shared_ptr<Material>> materials;
+        std::vector<std::shared_ptr<DirectionalLight>> lights;
         int width, height;
 
         Camera camera;
-        Vector3 lightDir;
-        Color lightColor;
+
 };
 #endif
