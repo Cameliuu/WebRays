@@ -6,6 +6,7 @@ const Color Color::Red = Color(255, 0, 0, 255, Image::pixel_format);
 const Color Color::Green = Color(0, 255, 0, 255, Image::pixel_format);
 const Color Color::Black = Color(0, 0, 0, 255, Image::pixel_format);
 const Color Color::Blue = Color(0, 0, 255, 255, Image::pixel_format);
+const Color Color::Gray = Color(192, 192, 192, 255, Image::pixel_format);
 
 // Parameterized constructor using initializer list
 Color::Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format)

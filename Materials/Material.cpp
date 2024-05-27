@@ -24,6 +24,11 @@ float Material::getShininess() const
     return this->_shininess;
 }
 
+float Material::getAmbientStrength() const
+{
+    return this->_ambientStrength;
+}
+
 void Material::setAmbient(Color ambient)
 {
     this->_ambient = ambient;

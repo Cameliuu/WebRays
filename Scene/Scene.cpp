@@ -3,6 +3,7 @@
 #include <ctime>    // For seeding rand()
 
 #include "../Lights/DirectionalLight.h"
+#include "../Objects/Plane.h"
 
 void Scene::render(Image* image) {
             const int samples_per_pixel = 16; // Number of samples per pixel for anti-aliasing
@@ -50,6 +51,7 @@ Color Scene::traceRay(const Ray& ray, int depth) {
 
     // Loop through each object to find the closest hit
     for (const auto& object : objects) {
+
         HitInfo hitInfo = object->hit(ray);
 
         if (hitInfo.hit) {
@@ -73,7 +75,11 @@ Color Scene::traceRay(const Ray& ray, int depth) {
         for(std::shared_ptr<DirectionalLight> light: lights)
         {
             //ambient
-            Color ambient =  light->getColor() * closest_hit_info.getMaterial()->getAmbient() * 0.1f;
+
+            Color ambient =  light->getColor() * closest_hit_info.getMaterial()->getAmbient() * closest_hit_info.getMaterial()->getAmbientStrength();
+
+            Vector3 shadowDirection = -light->getDirection();
+            Ray shadowRay(closest_hit_info.getT1WorldPost(),-light->getDirection());
 
             //diffuse
             Vector3 normal = closest_hit_info.getT1Normal();
@@ -98,16 +104,19 @@ Color Scene::traceRay(const Ray& ray, int depth) {
 
 void Scene::initialize(Image* image) {
     // Create and initialize the materials
-    materials.push_back(std::make_shared<Material>(Color::Red, Color::Red, Color::White,256.0f));
-    materials.push_back(std::make_shared<Material>(Color::Blue, Color::Blue, Color::White,32.0f));
+    materials.push_back(std::make_shared<Material>(Color::Red, Color::Red, Color::White,256.0f,0.1f));
+    materials.push_back(std::make_shared<Material>(Color::Blue, Color::Blue, Color::White,32.0f,0.1f));
+    materials.push_back(std::make_shared<Material>(Color::Gray, Color::Gray, Color::White,2.0f,0.5f));
 
     // Simulate creating the spheres
     Vector3 sphereCenter1(0.35f, 0.0f, -1.0f); // Position the sphere further away
     Vector3 sphereCenter2(-0.35f, 0.4f, -1.0f); // Position the sphere further away
+    Vector3 planeCenter(0.0f, 1.0f, -1.0f); // Adjust position of the plane
+    Vector3 planeNormal(0.0f, 1.0f, 0.0f); // Adjust normal of the plane
     float sphereRadius = 0.4f;
-    objects.push_back(std::make_shared<Sphere>(sphereCenter1, sphereRadius, materials.at(0)));
-    objects.push_back(std::make_shared<Sphere>(sphereCenter2, sphereRadius, materials.at(1)));
-
+    objects.push_back(std::make_shared<Sphere>(sphereCenter1, sphereRadius, materials.at(0),0));
+    objects.push_back(std::make_shared<Sphere>(sphereCenter2, sphereRadius, materials.at(1),1));
+    objects.push_back(std::make_shared<Plane>(planeCenter,planeNormal,materials.at(2),2));
     this->width = image->getWidth();
     this->height = image->getHeight();
 
@@ -122,6 +131,11 @@ void Scene::initialize(Image* image) {
     camera.setPosition(origin);
     camera.setPitch(0); // Adjust as needed
     camera.setYaw(0);   // Adjust as needed
+    emscripten_log(EM_LOG_CONSOLE, "Scene initialized with %d objects", objects.size());
+    for(const auto& object : objects)
+    {
+        emscripten_log(EM_LOG_CONSOLE, "Object ID: %d", object->getId());
+    }
 }
 
 Camera& Scene::getCamera() {

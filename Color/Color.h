@@ -14,6 +14,7 @@ public:
     static const Color Black;
     static const Color Blue;
     static const Color White;
+    static const Color Gray;
     // Constructors
     Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format);
     Color();

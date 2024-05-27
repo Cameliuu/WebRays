@@ -10,7 +10,7 @@
         float discriminant = b * b - 4 * a * c;  // Discriminant of the quadratic equation
         float t1 = (float)(-b + sqrt( discriminant) )/ 2*a;
         float t2 = (float)(-b - sqrt( discriminant) )/ 2*a;
-        HitInfo hitInfo = HitInfo(t1,t2,ray,this->center,this->getMaterial());
+        HitInfo hitInfo = HitInfo(t1,t2,ray,this->center,this->getMaterial(),this->id);
         if(discriminant > 0)
         {
             hitInfo.hit = true;
@@ -40,7 +40,7 @@ void Sphere::setRadius(const float &radius) {
         return this->radius;
     }
 
-    Sphere::Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material) : Object(material) {
+    Sphere::Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material,short id) : Object(material,id) {
         this->center = center;
         this->radius = radius;
     }

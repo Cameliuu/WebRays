@@ -7,4 +7,7 @@ add_executable(WebRays main.cpp App/App.h Image/Image.h App/App.cpp Color/Color.
         Materials/Material.cpp
         Materials/Material.h
         Lights/DirectionalLight.cpp
-        Lights/DirectionalLight.h)
+        Lights/DirectionalLight.h
+        Objects/Plane.cpp
+        Objects/Plane.h
+        Objects/Plane.h)

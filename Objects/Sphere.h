@@ -7,7 +7,7 @@
 
 class Sphere : public Object {
     public:
-        Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material);
+        Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material , short id);
         HitInfo hit (const Ray& ray) const override;
         void setCenter(const Vector3& center);
         void setRadius(const float& radius);

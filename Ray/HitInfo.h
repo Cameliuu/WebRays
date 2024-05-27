@@ -10,7 +10,7 @@
 class HitInfo {
 public:
     HitInfo() = default;
-    HitInfo(const float& t1, const float& t2, const Ray& ray, const Vector3& origin, std::shared_ptr<Material> material);
+    HitInfo(const float& t1, const float& t2, const Ray& ray, const Vector3& origin, std::shared_ptr<Material> material, short id);
     bool hit = false;
     Vector3 getT1Normal() const;
     Vector3 getT2Normal() const;
@@ -19,12 +19,16 @@ public:
     float getT1() const;
     float getT2() const;
     Ray getIncidenceRay() const;
+    short getId() const;
+
+    void setT1(float t1);
 private:
     float t1, t2;
     Vector3 t1WorldPosition, t2WorldPosition;
     Vector3 t1Normal, t2Normal;
     std::shared_ptr<Material> material;
     Ray incidenceRay;
+    short id;
 };
 
 #endif
