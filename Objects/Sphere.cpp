@@ -40,7 +40,31 @@ void Sphere::setRadius(const float &radius) {
         return this->radius;
     }
 
+    Sphere Sphere::from_json(const nlohmann::json& j)
+    {
+        float x = j.at("Center_X").get<float>();
+        emscripten_log(EM_LOG_CONSOLE, "Center x : %f", x);
+        float y = j.at("Center_Y").get<float>();
+        emscripten_log(EM_LOG_CONSOLE, "Center y : %f", y);
+        float z = j.at("Center_Z").get<float>();
+        emscripten_log(EM_LOG_CONSOLE, "Center z : %f", z);
+
+        Vector3 center = Vector3(x,y,z);
+
+        float radius = j.at("Radius").get<float>();
+        emscripten_log(EM_LOG_CONSOLE, "Radius : %f", radius);
+        short id = j.at("ID").get<short>();
+        emscripten_log(EM_LOG_CONSOLE, "ID : %d", id);
+        return Sphere(center,radius,id);
+    }
+
     Sphere::Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material,short id) : Object(material,id) {
+        this->center = center;
+        this->radius = radius;
+    }
+
+    Sphere::Sphere(const Vector3& center, const float& radius, short id) : Object(id)
+    {
         this->center = center;
         this->radius = radius;
     }

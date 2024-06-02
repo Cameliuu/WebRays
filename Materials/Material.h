@@ -1,7 +1,7 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 #include "../Color/Color.h"
-#include "../json.hpp"
+#include "../Json/json.hpp"
 
 class Material {
     public:
@@ -18,7 +18,7 @@ class Material {
         void setSpecular(Color specular);
         void setShininess(float shininess);
                 //JSON
-    void from_json(const nlohmann::json& j, Material& obj);
+    static Material from_json(const nlohmann::json& j);
     private:
 
         Color _ambient; // The ambient material vector defines what color the surface reflects under ambient lighting; this is usually the same as the surface's color

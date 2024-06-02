@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include "../Image/Image.h"
-#include "../json.hpp"
+#include "../Json/json.hpp"
 
 class Color {
 public:

@@ -1,6 +1,7 @@
 
 
 #include "App.h"
+
 void* renderThread(void* arg) {
     Image* image = static_cast<Image*>(arg);
 
@@ -37,6 +38,7 @@ EM_BOOL checkbox_callback(
 }
 
 App* App::instance = nullptr;
+std::string App::json = App::ReadAllText("materials.json");
 bool App::initialize(int width, int height) {
         if(SDL_Init(SDL_INIT_VIDEO)!=0)
         {
@@ -110,6 +112,19 @@ void App::mainLoop() {
 
 void App::staticMainLoop() {
     App::instance->mainLoop();
+}
+
+std::string App::ReadAllText(std::string filePath)
+{
+    std::ifstream fileStream(filePath);
+    if (!fileStream.is_open()) {
+        emscripten_log(EM_LOG_CONSOLE, "Unable to open file: %s", filePath.c_str());
+        throw std::runtime_error("Unable to open file");
+    }
+
+    std::stringstream buffer;
+    buffer << fileStream.rdbuf();
+    return buffer.str();
 }
 
 

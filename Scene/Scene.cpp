@@ -2,6 +2,7 @@
 #include <cstdlib>  // For rand()
 #include <ctime>    // For seeding rand()
 
+#include "../App/App.h"
 #include "../Lights/DirectionalLight.h"
 #include "../Objects/Plane.h"
 
@@ -108,16 +109,51 @@ Color Scene::traceRay(const Ray& ray, int depth) {
     }
 
     // Return background color if no hit
-    return Color(0, 0, 0, 255);
+    return Color(125, 0, 0, 255);
+}
+
+void Scene::load_materials(std::string json)
+{
+    // Parse the JSON data
+    nlohmann::json j = nlohmann::json::parse(json);
+
+    for (const auto& item : j.at("Materials")) {
+        Material material = Material::from_json(item);
+        materials.push_back(std::make_shared<Material>(material));
+    }
+}
+
+void Scene::load_objects(std::string json)
+{
+
+    nlohmann::json j = nlohmann::json::parse(json);
+
+    for (const auto& item : j.at("Spheres")) {
+
+        Sphere sphere = Sphere::from_json(item);
+        emscripten_log(EM_LOG_CONSOLE, "Center x : %f", sphere.getCenter().GetX());
+        emscripten_log(EM_LOG_CONSOLE, "Center y : %f", sphere.getCenter().GetY());
+        emscripten_log(EM_LOG_CONSOLE, "Center z : %f", sphere.getCenter().GetZ());
+        short materialIndex = item.at("MaterialIndex").get<short>();
+        sphere.setMaterial(materials.at(materialIndex));
+        objects.push_back(std::make_shared<Sphere>(sphere));
+    }
 }
 
 
 void Scene::initialize(Image* image) {
+
+    load_materials(App::json);
+    for (const auto& material : materials) {
+        emscripten_log(EM_LOG_CONSOLE, "Material:");
+        emscripten_log(EM_LOG_CONSOLE, "  Ambient: %s", material->getAmbient().getColorString().c_str());
+        emscripten_log(EM_LOG_CONSOLE, "  Diffuse: %s", material->getDiffuse().getColorString().c_str());
+        emscripten_log(EM_LOG_CONSOLE, "  Specular: %s", material->getSpecular().getColorString().c_str());
+        emscripten_log(EM_LOG_CONSOLE, "  Shininess: %f", material->getShininess());
+        emscripten_log(EM_LOG_CONSOLE, "  Ambient Strength: %f", material->getAmbientStrength());
+    }
     // Create and initialize the materials
-    materials.push_back(std::make_shared<Material>(Color::Red, Color::Red, Color::White,256.0f,0.1f));
-    materials.push_back(std::make_shared<Material>(Color::Blue, Color::Blue, Color::White,32.0f,0.1f));
-    materials.push_back(std::make_shared<Material>(Color::Gray, Color::Gray, Color::White,2.0f,0.5f));
-    materials.push_back(std::make_shared<Material>(Color::White, Color::White, Color::White,0.0f,0.5f));
+
     Vector3 lighpos =  -(Vector3(-0.2f, 0.5f, 1.0f));
     // Simulate creating the spheres
     Vector3 sphereCenter1(0.35f, 0.0f, -1.0f); // Position the sphere further away
@@ -125,10 +161,7 @@ void Scene::initialize(Image* image) {
     Vector3 planeCenter(0.0f, 1.0f, -1.0f); // Adjust position of the plane
     Vector3 planeNormal(0.0f, 1.0f, 0.0f); // Adjust normal of the plane
     float sphereRadius = 0.4f;
-    objects.push_back(std::make_shared<Sphere>(sphereCenter1, sphereRadius, materials.at(0),0));
-    objects.push_back(std::make_shared<Sphere>(sphereCenter2, sphereRadius, materials.at(1),1));
-    objects.push_back(std::make_shared<Sphere>(lighpos, 0.1f, materials.at(3),3));
-    objects.push_back(std::make_shared<Plane>(planeCenter,planeNormal,materials.at(2),2));
+    load_objects(App::json);
     this->width = image->getWidth();
     this->height = image->getHeight();
 

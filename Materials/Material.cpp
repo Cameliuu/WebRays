@@ -49,7 +49,40 @@ void Material::setShininess(float shininess)
     this->_shininess = shininess;
 }
 
-void Material::from_json(const nlohmann::json& j, Material& obj)
-{
 
-}
+    Material Material::from_json(const nlohmann::json& j) {
+
+
+
+        // AMBIENT
+        float ambient_r = j.at("Ambient_r").get<float>();
+        float ambient_g = j.at("Ambient_g").get<float>();
+        float ambient_b = j.at("Ambient_b").get<float>();
+        float ambient_a = j.at("Ambient_a").get<float>();
+
+        Color ambient = Color(ambient_r, ambient_g, ambient_b, ambient_a);
+
+        // DIFFUSE
+        float diffuse_r = j.at("Diffuse_r").get<float>();
+        float diffuse_g = j.at("Diffuse_g").get<float>();
+        float diffuse_b = j.at("Diffuse_b").get<float>();
+        float diffuse_a = j.at("Diffuse_a").get<float>();
+
+        Color diffuse = Color(diffuse_r, diffuse_g, diffuse_b, diffuse_a);
+
+        // SPECULAR
+        float specular_r = j.at("Specular_r").get<float>();
+        float specular_g = j.at("Specular_g").get<float>();
+        float specular_b = j.at("Specular_b").get<float>();
+        float specular_a = j.at("Specular_a").get<float>();
+
+        Color specular = Color(specular_r, specular_g, specular_b, specular_a);
+
+        // Shininess and Ambient Strength
+        float shininess = j.at("Shininess").get<float>();
+        float ambientStrength = j.at("AmbientStrength").get<float>();
+
+        return Material(ambient, diffuse, specular, shininess, ambientStrength);
+    }
+
+
