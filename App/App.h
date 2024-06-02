@@ -6,6 +6,7 @@
 #include "../Image/Image.h"
 #include "../Scene/scene.h"
 #include <atomic>
+
 class App{
     public:
         bool initialize(int width,int height);
@@ -24,6 +25,7 @@ class App{
         int width, height;
         SDL_Window* window;
         SDL_Renderer* renderer;
+        SDL_GLContext context;
         bool isRunning = false;
         SDL_Texture* texture;
 

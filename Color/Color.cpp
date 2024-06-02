@@ -1,29 +1,29 @@
 #include "Color.h"
 
 // Define static member variables
-const Color Color::White = Color(255, 255, 255, 255, Image::pixel_format);
-const Color Color::Red = Color(255, 0, 0, 255, Image::pixel_format);
-const Color Color::Green = Color(0, 255, 0, 255, Image::pixel_format);
-const Color Color::Black = Color(0, 0, 0, 255, Image::pixel_format);
-const Color Color::Blue = Color(0, 0, 255, 255, Image::pixel_format);
-const Color Color::Gray = Color(192, 192, 192, 255, Image::pixel_format);
+const Color Color::White = Color(255, 255, 255, 255);
+const Color Color::Red = Color(255, 0, 0, 255);
+const Color Color::Green = Color(0, 255, 0, 255);
+const Color Color::Black = Color(0, 0, 0, 255);
+const Color Color::Blue = Color(0, 0, 255, 255);
+const Color Color::Gray = Color(192, 192, 192, 255);
 
 // Parameterized constructor using initializer list
-Color::Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format)
+Color::Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha)
     : red_value(red), green_value(green), blue_value(blue), alpha_value(alpha) {
-    this->mapped_color = SDL_MapRGBA(format, red, green, blue, alpha);
+    this->mapped_color = SDL_MapRGBA(Image::pixel_format, red, green, blue, alpha);
 }
 
 // Default constructor
 Color::Color() : red_value(0), green_value(0), blue_value(0), alpha_value(0), mapped_color(0) {}
 
 // Setter method
-void Color::setColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat *format) {
+void Color::setColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha) {
     this->red_value = red;
     this->green_value = green;
     this->blue_value = blue;
     this->alpha_value = alpha;
-    this->mapped_color = SDL_MapRGBA(format, red, green, blue, alpha);
+    this->mapped_color = SDL_MapRGBA(Image::pixel_format, red, green, blue, alpha);
 }
 
 // Getter methods
@@ -60,7 +60,7 @@ Color Color::operator*(float value)  {
     Uint8 newGreen = static_cast<Uint8>(green_value * value);
     Uint8 newBlue = static_cast<Uint8>(blue_value * value);
     Uint8 newAlpha = static_cast<Uint8>(alpha_value * value);
-    return Color(newRed, newGreen, newBlue, newAlpha, Image::pixel_format);
+    return Color(newRed, newGreen, newBlue, newAlpha);
 }
 
 // Template for division operator
@@ -70,7 +70,7 @@ Color Color::divide(T value) const {
     Uint8 newGreen = static_cast<Uint8>(green_value / value);
     Uint8 newBlue = static_cast<Uint8>(blue_value / value);
     Uint8 newAlpha = static_cast<Uint8>(alpha_value / value);
-    return Color(newRed, newGreen, newBlue, newAlpha, Image::pixel_format);
+    return Color(newRed, newGreen, newBlue, newAlpha);
 }
 
 // Overloaded division operators
@@ -88,7 +88,7 @@ Color Color::operator+(const Color& other) const {
     Uint8 newGreen = std::min(static_cast<int>(green_value) + static_cast<int>(other.green_value),255);
     Uint8 newBlue = std::min(static_cast<int>(blue_value) + static_cast<int>(other.blue_value),255);
     Uint8 newAlpha = std::min(static_cast<int>(alpha_value) + static_cast<int>(other.alpha_value),255);
-    return Color(newRed, newGreen, newBlue, newAlpha, Image::pixel_format);
+    return Color(newRed, newGreen, newBlue, newAlpha);
 }
 
 Color Color::operator*(const Color& other) const
@@ -117,7 +117,7 @@ Color Color::operator*(const Color& other) const
     unsigned char newBlue = static_cast<unsigned char>(bResult * 255);
     unsigned char newAlpha = static_cast<unsigned char>(aResult * 255);
 
-    return Color(newRed, newGreen, newBlue, alpha_value, Image::pixel_format);
+    return Color(newRed, newGreen, newBlue, alpha_value);
 
 }
 
@@ -127,7 +127,7 @@ Color Color::addWithoutClamping(const Color& other) const
     Uint8 newGreen = static_cast<int>(green_value) + static_cast<int>(other.green_value);
     Uint8 newBlue = static_cast<int>(blue_value) + static_cast<int>(other.blue_value);
     Uint8 newAlpha = static_cast<int>(alpha_value) + static_cast<int>(other.alpha_value);
-    return Color(newRed, newGreen, newBlue, newAlpha, Image::pixel_format);
+    return Color(newRed, newGreen, newBlue, newAlpha);
 }
 
 

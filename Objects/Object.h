@@ -15,6 +15,8 @@ public:
     void setMaterial(std::shared_ptr<Material> material);
     std::shared_ptr<Material> getMaterial() const;
     short getId();
+    void setPosition(const Vector3& vector3);
+
 protected:
     std::shared_ptr<Material> material;
     short id;

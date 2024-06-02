@@ -29,6 +29,8 @@ class Scene {
     float G(float alpha, Vector3 N, Vector3 V, Vector3 L);
     float F(float F0, Vector3 V, Vector3 H);
     Color traceRay(const Ray& ray, int depth);
+
+
     private:
         std::vector<std::shared_ptr<Object>> objects;
         std::vector<std::shared_ptr<Material>> materials;

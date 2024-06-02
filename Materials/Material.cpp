@@ -48,3 +48,8 @@ void Material::setShininess(float shininess)
 {
     this->_shininess = shininess;
 }
+
+void Material::from_json(const nlohmann::json& j, Material& obj)
+{
+
+}

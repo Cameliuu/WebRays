@@ -20,3 +20,5 @@ short Object::getId()
 {
     return this->id;
 }
+
+

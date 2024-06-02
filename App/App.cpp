@@ -47,12 +47,18 @@ bool App::initialize(int width, int height) {
         {
             std::cout << "[ ! ] Failed to create window and renderer\n";
         }
+        context = SDL_GL_CreateContext(window);
         App::instance = this;
         this->width = width;
         this->height = height;
         isRunning = true;
         image.initialize(1280,720,this->renderer);
         scene.initialize(&image);
+
+
+
+
+
     emscripten_set_click_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW,
     this,
     1,

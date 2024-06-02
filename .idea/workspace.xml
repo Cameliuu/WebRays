@@ -20,14 +20,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add anti-aliasing">
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add planes">
+      <change afterPath="$PROJECT_DIR$/json.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json_fwd.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Color/Color.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Color/Color.h" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Materials/Material.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Materials/Material.h" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.h" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.h" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +114,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\repos\WebRays\Vector3" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\repos\WebRays" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
@@ -139,6 +154,9 @@
       <workItem from="1716568496926" duration="3007000" />
       <workItem from="1716571864391" duration="8971000" />
       <workItem from="1716630756284" duration="9783000" />
+      <workItem from="1716816428225" duration="123000" />
+      <workItem from="1716817591547" duration="10942000" />
+      <workItem from="1717315655447" duration="1719000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>
@@ -191,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716574417081</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add planes">
+      <option name="closed" value="true" />
+      <created>1716804023688</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716804023688</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +236,7 @@
     <MESSAGE value="Add multithreading for rendering and limit frame rate to 60" />
     <MESSAGE value="Added Materials System" />
     <MESSAGE value="Add anti-aliasing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add anti-aliasing" />
+    <MESSAGE value="Add planes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add planes" />
   </component>
 </project>

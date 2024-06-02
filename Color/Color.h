@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <iostream>
 #include "../Image/Image.h"
+#include "../json.hpp"
+
 class Color {
 public:
     // Static predefined colors
@@ -16,7 +18,7 @@ public:
     static const Color White;
     static const Color Gray;
     // Constructors
-    Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format);
+    Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha);
     Color();
 
     // Getter methods
@@ -30,7 +32,7 @@ public:
     std::string getColorString() const;
 
     // Setter method
-    void setColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha, SDL_PixelFormat* format);
+    void setColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha);
 
     // Overloaded operators
     Color operator*(float value);
@@ -47,6 +49,15 @@ public:
     Color addWithoutClamping(const Color& other) const;
     // Overloaded stream insertion operator
     friend std::ostream& operator<<(std::ostream& os, const Color& color);
+
+    void from_json(const nlohmann::json& j, Color& obj)
+    {
+        j.at("red").get_to(obj.red_value);
+        j.at("green").get_to(obj.green_value);
+        j.at("blue").get_to(obj.blue_value);
+        j.at("alpha").get_to(obj.alpha_value);
+
+    }
 
 private:
     Uint8 red_value;
