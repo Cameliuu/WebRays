@@ -26,6 +26,14 @@ float Vector3::Magnitude() const { return sqrt(x * x + y * y + z * z); }
 
 float Vector3::Dot(const Vector3& Other) const { return (this->x * Other.x) + (this->y * Other.y) + (this->z * Other.z); }
 
+Vector3 Vector3::Cross(const Vector3& Other) const {
+    return Vector3(
+        y * Other.z - z * Other.y,
+        z * Other.x - x * Other.z,
+        x * Other.y - y * Other.x
+    );
+}
+
 Vector3 Vector3::Normalize() const
 {
     float magnitude = Magnitude();

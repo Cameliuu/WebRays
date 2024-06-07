@@ -8,10 +8,11 @@ Camera::Camera() {
 
 void Camera::setPosition(const Vector3 &position) {
     this->position = position;
+    updateCameraVectors();
 }
 
 void Camera::setLookAt(const Vector3 &look_at) {
-
+    this->look_at = look_at;
 }
 
 void Camera::setAspectRatio(const float &aspect_ratio) {
@@ -54,6 +55,17 @@ Ray Camera::shootRay(float u, float v) {
     direction = direction.Normalize();
 
     return Ray(origin, direction);
+}
+
+void Camera::updateCameraVectors()
+{
+    Vector3 up = Vector3(0.0f,-1.0f,0.0f);
+
+    forward = (position - look_at).Normalize();
+
+    right = (up.Cross(forward)).Normalize();
+
+    up = (forward.Cross(right)).Normalize();
 }
 
 void Camera::setPoisitionX(const float &x) {

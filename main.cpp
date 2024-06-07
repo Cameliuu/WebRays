@@ -15,7 +15,6 @@ EM_BOOL keypress_callback(int eventType, const EmscriptenKeyboardEvent *e, void 
         {
             camera.setPoisitionZ(currentPos.GetZ()+0.1f);
         }
-
     return EM_TRUE;
 }
 
@@ -23,6 +22,6 @@ int main() {
 
     App app = App();
     app.initialize(1280,720);
-    emscripten_set_main_loop(App::instance->staticMainLoop,60,1);
+    //emscripten_set_main_loop(App::instance->staticMainLoop,60,1);
     return 0;
 }

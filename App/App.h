@@ -17,8 +17,10 @@ class App{
         static void staticMainLoop();
         std::atomic<bool> renderingDone;
         std::atomic<bool> renderingStarted;
+
         static std::string ReadAllText(std::string path);
-        static std::string json;
+        static std::string configFile;
+        static std::atomic<bool> loadingDone;
     static App* instance;
 
     private:

@@ -20,25 +20,25 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="Add planes">
+    <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="partially integrate loading from json">
+      <change afterPath="$PROJECT_DIR$/Lights/PointLight.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lights/PointLight.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Color/Color.h" beforeDir="false" afterPath="$PROJECT_DIR$/Color/Color.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Materials/Material.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Materials/Material.h" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Sphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objects/Sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.h" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.h" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.h" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_sdl2.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Json/json.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_fwd.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Json/json_fwd.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +52,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -121,11 +122,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="WebRays" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WebRays" TARGET_NAME="WebRays" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WebRays" RUN_TARGET_NAME="WebRays">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -164,6 +160,14 @@
       <workItem from="1716816428225" duration="123000" />
       <workItem from="1716817591547" duration="10942000" />
       <workItem from="1717315655447" duration="1719000" />
+      <workItem from="1717424609246" duration="11676000" />
+      <workItem from="1717579870992" duration="10173000" />
+      <workItem from="1717597271112" duration="8000" />
+      <workItem from="1717597483012" duration="24000" />
+      <workItem from="1717598063793" duration="2416000" />
+      <workItem from="1717750439381" duration="678000" />
+      <workItem from="1717751744966" duration="887000" />
+      <workItem from="1717753866535" duration="3724000" />
     </task>
     <task id="LOCAL-00001" summary="Add Scene and Vector classes">
       <created>1709381207537</created>
@@ -224,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716804023688</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="partially integrate loading from json">
+      <option name="closed" value="true" />
+      <created>1717350015256</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717350015256</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +256,7 @@
     <MESSAGE value="Added Materials System" />
     <MESSAGE value="Add anti-aliasing" />
     <MESSAGE value="Add planes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add planes" />
+    <MESSAGE value="partially integrate loading from json" />
+    <option name="LAST_COMMIT_MESSAGE" value="partially integrate loading from json" />
   </component>
 </project>

@@ -77,40 +77,57 @@ Color Scene::traceRay(const Ray& ray, int depth) {
     // If there is a hit, calculate the color
     if (closest_hit_info.hit) {
         Color final_color(0, 0, 0, 255);
-        for (std::shared_ptr<DirectionalLight> light : lights) {
+        for (std::shared_ptr<PointLight> light : lights) {
             // Ambient
             Color ambient = light->getColor() * closest_hit_info.getMaterial()->getAmbient() * closest_hit_info.getMaterial()->getAmbientStrength();
             final_color = final_color + ambient;
 
-            Vector3 shadowDirection = -light->getDirection();
-            Vector3 shadowOrigin = closest_hit_info.getT1WorldPost() + closest_hit_info.getT1Normal() * 0.001f;
-            Ray shadowRay(shadowOrigin, shadowDirection);
+
+
             bool inShadow = false;
 
 
 
+                Vector3 lightDir = (light->getPosition() - closest_hit_info.getT1WorldPost()).Normalize();
+
 
                 // Diffuse
                 Vector3 normal = closest_hit_info.getT1Normal().Normalize();
-                float diff = std::max(normal.Dot(light->getDirection()), 0.0f);
+                float diff = std::max(normal.Dot(lightDir), 0.0f);
                 Color diffuse = light->getColor() * (closest_hit_info.getMaterial()->getDiffuse() * diff);
 
-                // Specular
-                Vector3 lightDirection = -light->getDirection();
+                //Specular
                 Vector3 viewDir = (camera.getPosition() - closest_hit_info.getT1WorldPost()).Normalize();
-                Vector3 reflectDir = (normal * (normal.Dot(lightDirection)) * 2.0f) - lightDirection;
+                Vector3 reflectDir = (normal * (normal.Dot(lightDir)) * 2.0f) - lightDir;
                 float spec = pow(std::max(viewDir.Dot(reflectDir), 0.0f), closest_hit_info.getMaterial()->getShininess());
                 Color specular = light->getColor() * (closest_hit_info.getMaterial()->getSpecular() * spec);
 
+
                 final_color = final_color + diffuse + specular;
-            }
+
+        }
 
         return final_color;
     }
 
     // Return background color if no hit
-    return Color(125, 0, 0, 255);
+    return Color(0, 0, 0, 255);
 }
+
+void Scene::load_from_config_file()
+{
+    App::loadingDone = false;
+    //CLEAR THE VECTORS
+    objects.clear();
+    materials.clear();
+    //Load the json
+
+    std::string json = App::ReadAllText(App::configFile);
+    load_materials(json);
+    load_objects(json);
+    App::loadingDone = true;
+}
+
 
 void Scene::load_materials(std::string json)
 {
@@ -143,7 +160,7 @@ void Scene::load_objects(std::string json)
 
 void Scene::initialize(Image* image) {
 
-    load_materials(App::json);
+   load_from_config_file();
     for (const auto& material : materials) {
         emscripten_log(EM_LOG_CONSOLE, "Material:");
         emscripten_log(EM_LOG_CONSOLE, "  Ambient: %s", material->getAmbient().getColorString().c_str());
@@ -154,27 +171,38 @@ void Scene::initialize(Image* image) {
     }
     // Create and initialize the materials
 
-    Vector3 lighpos =  -(Vector3(-0.2f, 0.5f, 1.0f));
+    Vector3 lightPos =  Vector3(-0.7f, -0.2f, -1.0f);
     // Simulate creating the spheres
     Vector3 sphereCenter1(0.35f, 0.0f, -1.0f); // Position the sphere further away
     Vector3 sphereCenter2(-0.35f, 0.4f, -1.0f); // Position the sphere further away
     Vector3 planeCenter(0.0f, 1.0f, -1.0f); // Adjust position of the plane
     Vector3 planeNormal(0.0f, 1.0f, 0.0f); // Adjust normal of the plane
     float sphereRadius = 0.4f;
-    load_objects(App::json);
+
+
+    objects.push_back(std::make_shared<Sphere>(lightPos,0.1f,materials.at(0),7));
+   // objects.push_back(std::make_shared<Plane>(Vector3(-3.0f, 1.0f, 3.0f), Vector3(-1.0f, 0.0f, 0.0f), materials.at(1), 5));
+  // objects.push_back(std::make_shared<Plane>(Vector3(0.0f, -1.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), materials.at(1), 2)); // Floor
+    objects.push_back(std::make_shared<Plane>(Vector3(0.0f, 1.0f, 2.0f), Vector3(0.0f, -1.0f, 0.0f), materials.at(1), 3)); // Ceiling
+    //objects.push_back(std::make_shared<Plane>(Vector3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 0.0f, 1.0f), materials.at(1), 4)); // Back Wall
+     // Adjusted position to match the center
+; // Left Wall
+    //objects.push_back(std::make_shared<Plane>(Vector3(1.0f, 0.0f, -1.0f), Vector3(-1.0f, 0.0f, 0.0f), materials.at(1), 6)); // Right Wall
+
+   // objects.push_back(std::make_shared<Plane>(-Vector3(2.0f, 0.0f, -2.0f),Vector3(-1.0f,0.0f,0.0f),materials.at(1),6));
     this->width = image->getWidth();
     this->height = image->getHeight();
 
     // Create and initialize the light
 
-    Vector3 lightDir = lighpos - sphereCenter1; // Changed light direction
-    lightDir = lightDir.Normalize();
-    this->lights.push_back(std::make_shared<DirectionalLight>(lightDir,Color::White));
+
+    this->lights.push_back(std::make_shared<PointLight>(lightPos,Color::White));
 
     // Create and initialize the camera
     Vector3 origin = Vector3(0.0f, 0.0f, 1.0f); // Move the camera back
     camera.setAspectRatio(static_cast<float>(width) / static_cast<float>(height));
     camera.setPosition(origin);
+   // camera.setLookAt();
     camera.setPitch(0); // Adjust as needed
     camera.setYaw(0);   // Adjust as needed
     emscripten_log(EM_LOG_CONSOLE, "Scene initialized with %d objects", objects.size());

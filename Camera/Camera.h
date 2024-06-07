@@ -2,6 +2,7 @@
 #define CAMERA_H
 #include "../Vector3/Vector3.h"
 #include "../Ray/Ray.h"
+#include <math.h>
 class Camera{
     public:
                     //CONSTRUCTORS
@@ -28,6 +29,10 @@ class Camera{
     private:
     Vector3 position;
     Vector3 look_at;
+    Vector3 up;
+    Vector3 right;
+    Vector3 forward;
+    void updateCameraVectors();
     float aspect_ratio;
     float fov;
     float pitch;

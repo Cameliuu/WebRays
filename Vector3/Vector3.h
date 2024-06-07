@@ -27,6 +27,7 @@ public:
     // METHODS
     float Magnitude() const;
     float Dot(const Vector3& Other) const;
+    Vector3 Cross(const Vector3& Other) const;
     Vector3 Normalize() const;
 
     // OPERATOR OVERLOADS

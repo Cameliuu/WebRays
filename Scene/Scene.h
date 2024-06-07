@@ -15,6 +15,8 @@
 #include <emscripten.h>
 #include <emscripten/html5.h>
 #include <math.h>
+
+#include "../Lights/PointLight.h"
 #include "../Materials/Material.h"
 
 class Scene {
@@ -30,13 +32,15 @@ class Scene {
     float F(float F0, Vector3 V, Vector3 H);
     Color traceRay(const Ray& ray, int depth);
 
-    void load_materials(std::string json);
-    void load_objects(std::string json);
-
+    void load_from_config_file();
     private:
         std::vector<std::shared_ptr<Object>> objects;
         std::vector<std::shared_ptr<Material>> materials;
-        std::vector<std::shared_ptr<DirectionalLight>> lights;
+        std::vector<std::shared_ptr<PointLight>> lights;
+
+
+    void load_materials(std::string json);
+    void load_objects(std::string json);
         int width, height;
 
         Camera camera;

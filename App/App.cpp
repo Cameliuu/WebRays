@@ -25,20 +25,24 @@ EM_BOOL checkbox_callback(
         // Access the Scene instance from the App instance
         Scene& scene = appInstance->getScene();
 
-        // Access the objects vector from the Scene instance
-        const std::vector<std::shared_ptr<Object>>& objects = scene.getObjects();
+        emscripten_out("reloading config file");
 
-        // Iterate over the objects vector and do something
-        for (const auto& object : objects) {
-            emscripten_out("merge");
-        }
+        if(App::loadingDone == true)
+            App::loadingDone = false;
+        else
+            emscripten_out("wait for the next load");
+
+
+
+
     }
 
     return 0;
 }
 
 App* App::instance = nullptr;
-std::string App::json = App::ReadAllText("materials.json");
+std::string App::configFile = "materials.json";
+std::atomic<bool> App::loadingDone = false;
 bool App::initialize(int width, int height) {
         if(SDL_Init(SDL_INIT_VIDEO)!=0)
         {
@@ -74,7 +78,7 @@ void App::mainLoop() {
 
 
 
-    if (!renderingStarted) {
+    if (!renderingStarted && loadingDone) {
         // Start the rendering thread only if it hasn't been started yet
         pthread_t renderThreadId;
         int rc = pthread_create(&renderThreadId, NULL, renderThread, &image);
@@ -95,6 +99,8 @@ void App::mainLoop() {
 
         // Reset renderingStarted if you want to render again
         renderingStarted = false;
+        if(loadingDone == false)
+            scene.load_from_config_file();
     }
 
     if (!isRunning) {
@@ -125,6 +131,7 @@ std::string App::ReadAllText(std::string filePath)
     std::stringstream buffer;
     buffer << fileStream.rdbuf();
     return buffer.str();
+    fileStream.close();
 }
 
 
