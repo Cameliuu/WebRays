@@ -17,6 +17,7 @@ class Material {
         void setDiffuse(Color diffuse);
         void setSpecular(Color specular);
         void setShininess(float shininess);
+        void setAmbientStrength(float strength);
                 //JSON
     static Material from_json(const nlohmann::json& j);
     private:

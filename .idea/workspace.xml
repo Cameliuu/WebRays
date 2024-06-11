@@ -21,18 +21,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cfe0a06-4c06-48ae-ad5c-4c15be79f5db" name="Changes" comment="partially integrate loading from json">
-      <change afterPath="$PROJECT_DIR$/Lights/PointLight.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lights/PointLight.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/App.h" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Camera/Camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/Scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector3/Vector3.h" beforeDir="false" afterPath="$PROJECT_DIR$/Vector3/Vector3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Materials/Material.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Materials/Material.h" beforeDir="false" afterPath="$PROJECT_DIR$/Materials/Material.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Object.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Sphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objects/Sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/Objects/Sphere.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.h" beforeDir="false" afterPath="$PROJECT_DIR$/imgui/imgui/backends/imgui_impl_opengl3.h" afterDir="false" />

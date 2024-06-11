@@ -58,6 +58,12 @@ void Sphere::setRadius(const float &radius) {
         return Sphere(center,radius,id);
     }
 
+    Sphere::Sphere(const Vector3& center, const float& radius, Material& material, short id) : Object(material,id)
+    {
+        this->center = center;
+        this->radius = radius;
+    }
+
     Sphere::Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material,short id) : Object(material,id) {
         this->center = center;
         this->radius = radius;

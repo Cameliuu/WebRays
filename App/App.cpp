@@ -7,40 +7,16 @@ void* renderThread(void* arg) {
 
     // Perform rendering calculations
     App::instance->renderingStarted = true;
-    App::instance->getScene().render(image);
+    App::instance->getScene()->render(image);
 
     App::instance->renderingDone = true;
 
     return nullptr;
 }
-EM_BOOL checkbox_callback(
-    int eventType,
-    const EmscriptenMouseEvent *mouseEvent,
-    void *userData)
-{
-    if (eventType == EMSCRIPTEN_EVENT_CLICK) {
-        // Access the App instance
-        App* appInstance = static_cast<App*>(userData);
 
-        // Access the Scene instance from the App instance
-        Scene& scene = appInstance->getScene();
-
-        emscripten_out("reloading config file");
-
-        if(App::loadingDone == true)
-            App::loadingDone = false;
-        else
-            emscripten_out("wait for the next load");
-
-
-
-
-    }
-
-    return 0;
-}
 
 App* App::instance = nullptr;
+
 std::string App::configFile = "materials.json";
 std::atomic<bool> App::loadingDone = false;
 bool App::initialize(int width, int height) {
@@ -55,21 +31,17 @@ bool App::initialize(int width, int height) {
         }
         context = SDL_GL_CreateContext(window);
         App::instance = this;
+        scene = std::make_shared<Scene>();
         this->width = width;
         this->height = height;
         isRunning = true;
         image.initialize(1280,720,this->renderer);
-        scene.initialize(&image);
+        scene->initialize(&image);
 
 
 
 
 
-    emscripten_set_click_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW,
-    this,
-    1,
-    checkbox_callback
-);
 
         return true;
 }
@@ -99,8 +71,7 @@ void App::mainLoop() {
 
         // Reset renderingStarted if you want to render again
         renderingStarted = false;
-        if(loadingDone == false)
-            scene.load_from_config_file();
+
     }
 
     if (!isRunning) {
@@ -143,7 +114,7 @@ void App::handleEvents() {
         }
         else if(event.type == SDL_KEYDOWN) {
             emscripten_out("Intra pe keydown");
-            Camera& camera = App::instance->getScene().getCamera();
+            Camera& camera = App::instance->getScene()->getCamera();
             Vector3 currentPos = camera.getPosition();
             switch (event.key.keysym.sym) {
                 case SDLK_a: // Left
@@ -175,7 +146,7 @@ void App::handleEvents() {
     }
 }
 
-Scene& App::getScene() {
+std::shared_ptr<Scene> App::getScene() const{
     return this->scene;
 }
 

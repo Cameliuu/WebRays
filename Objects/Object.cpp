@@ -7,6 +7,12 @@ Object::Object(short id)
     this->id = id;
 }
 
+Object::Object(Material& material, short id)
+{
+    this->material = std::make_shared<Material>(material);
+    this->id = id;
+}
+
 Object::Object(std::shared_ptr<Material> material, short id) : material(material), id(id) {}
 
 HitInfo Object::hit(const Ray& ray) const {

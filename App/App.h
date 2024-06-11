@@ -13,7 +13,7 @@ class App{
         bool initialize(int width,int height);
         void handleEvents();
         void mainLoop();
-        Scene& getScene();
+        std::shared_ptr<Scene> getScene() const;
         static void staticMainLoop();
         std::atomic<bool> renderingDone;
         std::atomic<bool> renderingStarted;
@@ -25,7 +25,7 @@ class App{
 
     private:
         Image image;
-        Scene scene;
+        std::shared_ptr<Scene> scene;
         int width, height;
         SDL_Window* window;
         SDL_Renderer* renderer;

@@ -49,8 +49,13 @@ void Material::setShininess(float shininess)
     this->_shininess = shininess;
 }
 
+void Material::setAmbientStrength(float strength)
+{
+    this->_ambientStrength = strength;
+}
 
-    Material Material::from_json(const nlohmann::json& j) {
+
+Material Material::from_json(const nlohmann::json& j) {
 
 
 

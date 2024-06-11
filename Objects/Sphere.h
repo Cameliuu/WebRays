@@ -8,6 +8,7 @@
 
 class Sphere : public Object {
     public:
+        Sphere(const Vector3 &center, const float &radius, Material& material , short id);
         Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material , short id);
         Sphere(const Vector3 &center, const float &radius , short id);
         HitInfo hit (const Ray& ray) const override;
