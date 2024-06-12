@@ -3,6 +3,8 @@
 #include "App.h"
 
 void* renderThread(void* arg) {
+
+
     Image* image = static_cast<Image*>(arg);
 
     // Perform rendering calculations
@@ -42,7 +44,7 @@ bool App::initialize(int width, int height) {
 
 
 
-
+        this->initialized = true;
         return true;
 }
 
@@ -50,7 +52,7 @@ void App::mainLoop() {
 
 
 
-    if (!renderingStarted && loadingDone) {
+    if (!renderingStarted) {
         // Start the rendering thread only if it hasn't been started yet
         pthread_t renderThreadId;
         int rc = pthread_create(&renderThreadId, NULL, renderThread, &image);
@@ -63,6 +65,7 @@ void App::mainLoop() {
 
     // Check if rendering is done
     if (renderingDone) {
+        emscripten_out("rendering done");
         // Reset the flag for the next rendering
         renderingDone = false;
 
@@ -89,6 +92,11 @@ void App::mainLoop() {
 
 void App::staticMainLoop() {
     App::instance->mainLoop();
+}
+
+bool App::isInitialized() const
+{
+    return this->initialized;
 }
 
 std::string App::ReadAllText(std::string filePath)

@@ -17,6 +17,20 @@ void printObjectsSize()
 {
     emscripten_log(EM_LOG_CONSOLE,"Size of objs: %d", testobjs.size());
 }
+void updateSphere(Sphere sph)
+{
+    short id = sph.getId();
+    for(auto& obj :App::instance->getScene()->getObjects())
+    {
+        if (obj->getId() == id)
+        {
+            obj = std::make_shared<Sphere>(sph);
+        }
+    }
+
+    testobjs = App::instance->getScene()->getObjects();
+}
+
 EMSCRIPTEN_BINDINGS(color_module) {
     class_<Vector3>("Vector3")
        .constructor<float, float, float>()
@@ -41,17 +55,18 @@ EMSCRIPTEN_BINDINGS(color_module) {
     class_<Object>("Object")
         .smart_ptr<std::shared_ptr<Object>>("Object")
         .property("material", &Object::getMaterial, &Object::setMaterial)
-        .function("getId", &Object::getId)
+        .property("id", &Object::getId)
         .function("hit", &Object::hit);
     class_<Sphere, base<Object>>("Sphere")
         .constructor<Vector3,float,Material&,short>()
         .smart_ptr<std::shared_ptr<Sphere>>("Sphere")
+        .property("radius", &Sphere::getRadius)
         .property("center", &Sphere::getCenter, &Sphere::setCenter);
     class_<Scene>("Scene")
-        .smart_ptr<std::shared_ptr<Scene>>("Scene")
-        .property("Objects",&Scene::getObjects);
+        .smart_ptr<std::shared_ptr<Scene>>("Scene");
     class_<App>("App")
-        .property("Scene", &App::getScene);
+        .property("Scene", &App::getScene)
+        .property("initialized", &App::isInitialized);
 
     register_vector<std::shared_ptr<Material>>("Materials");
     register_vector<std::shared_ptr<Object>>("Objects");
@@ -59,14 +74,21 @@ EMSCRIPTEN_BINDINGS(color_module) {
     function("getAppInstace",&getAppInstance, allow_raw_pointers());
     function("getObjs", &getObjs);
     function("printObjectsSize", &printObjectsSize);
+    function("updateSphere",&updateSphere);
 }
-
+EM_BOOL button_click_callback(int eventType, const EmscriptenMouseEvent* e, void* userData)
+{
+    emscripten_out("merge");
+    return EM_TRUE;
+}
 int main() {
 
     App app = App();
     app.initialize(1280,720);
-    //emscripten_set_main_loop(App::instance->staticMainLoop,60,1);
     testobjs = App::instance->getScene()->getObjects();
+    //emscripten_set_main_loop(App::instance->staticMainLoop,0,1);
+
     printObjectsSize();
+    emscripten_set_click_callback("#myButton", nullptr, EM_TRUE, button_click_callback);
     return 0;
 }

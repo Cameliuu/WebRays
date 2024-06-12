@@ -17,7 +17,7 @@ class App{
         static void staticMainLoop();
         std::atomic<bool> renderingDone;
         std::atomic<bool> renderingStarted;
-
+        bool isInitialized() const;
         static std::string ReadAllText(std::string path);
         static std::string configFile;
         static std::atomic<bool> loadingDone;
@@ -25,6 +25,7 @@ class App{
 
     private:
         Image image;
+        bool initialized;
         std::shared_ptr<Scene> scene;
         int width, height;
         SDL_Window* window;

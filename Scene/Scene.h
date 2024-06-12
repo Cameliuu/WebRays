@@ -24,7 +24,7 @@ class Scene {
       void render(Image* image);
       void initialize(Image* image);
       Camera& getCamera();
-    const std::vector<std::shared_ptr<Object>>& getObjects() const;
+     std::vector<std::shared_ptr<Object>>& getObjects();
     Color computeBRDF(HitInfo hit_info);
     float computeD(Vector3 surfaceNormal, Vector3 halfwayVector, float alpha);
     float G1(Vector3 N, Vector3 X, float alpha);
@@ -34,7 +34,7 @@ class Scene {
 
     void load_from_config_file();
     private:
-        std::vector<std::shared_ptr<Object>> objects;
+      std::vector<std::shared_ptr<Object>> objects;
         std::vector<std::shared_ptr<Material>> materials;
         std::vector<std::shared_ptr<PointLight>> lights;
 

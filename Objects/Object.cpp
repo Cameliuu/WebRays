@@ -27,7 +27,7 @@ std::shared_ptr<Material> Object::getMaterial() const {
     return this->material;
 }
 
-short Object::getId()
+short Object::getId() const
 {
     return this->id;
 }

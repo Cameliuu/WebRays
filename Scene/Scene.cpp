@@ -37,6 +37,7 @@ void Scene::render(Image* image) {
             Uint8 final_blue = static_cast<Uint8>(accumulated_blue / samples_per_pixel);
 
             Color final_color(final_red, final_green, final_blue, 255);
+
             image->setPixel(x, y, final_color.getMappedColor());
         }
     }
@@ -111,7 +112,7 @@ Color Scene::traceRay(const Ray& ray, int depth) {
     }
 
     // Return background color if no hit
-    return Color(0, 0, 0, 255);
+    return Color(125, 0, 0, 255);
 }
 
 void Scene::load_from_config_file()
@@ -160,7 +161,7 @@ void Scene::load_objects(std::string json)
 
 void Scene::initialize(Image* image) {
 
-   load_from_config_file();
+  // load_from_config_file();
     for (const auto& material : materials) {
         emscripten_log(EM_LOG_CONSOLE, "Material:");
         emscripten_log(EM_LOG_CONSOLE, "  Ambient: %s", material->getAmbient().getColorString().c_str());
@@ -180,10 +181,10 @@ void Scene::initialize(Image* image) {
     float sphereRadius = 0.4f;
 
 
-    objects.push_back(std::make_shared<Sphere>(lightPos,0.1f,materials.at(0),7));
+    objects.push_back(std::make_shared<Sphere>(lightPos,0.1f,std::make_shared<Material>(Material(Color::Red,Color::Red,Color::White,256,12)),7));
    // objects.push_back(std::make_shared<Plane>(Vector3(-3.0f, 1.0f, 3.0f), Vector3(-1.0f, 0.0f, 0.0f), materials.at(1), 5));
   // objects.push_back(std::make_shared<Plane>(Vector3(0.0f, -1.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), materials.at(1), 2)); // Floor
-    objects.push_back(std::make_shared<Plane>(Vector3(0.0f, 1.0f, 2.0f), Vector3(0.0f, -1.0f, 0.0f), materials.at(1), 3)); // Ceiling
+   // objects.push_back(std::make_shared<Plane>(Vector3(0.0f, 1.0f, 2.0f), Vector3(0.0f, -1.0f, 0.0f), materials.at(1), 3)); // Ceiling
     //objects.push_back(std::make_shared<Plane>(Vector3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 0.0f, 1.0f), materials.at(1), 4)); // Back Wall
      // Adjusted position to match the center
 ; // Left Wall
@@ -216,6 +217,6 @@ Camera& Scene::getCamera() {
     return this->camera;
 }
 
-const std::vector<std::shared_ptr<Object>>& Scene::getObjects() const {
+ std::vector<std::shared_ptr<Object>>& Scene::getObjects() {
     return this->objects;
 }

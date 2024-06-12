@@ -16,7 +16,7 @@ public:
     virtual HitInfo hit(const Ray& ray) const = 0;
     void setMaterial(std::shared_ptr<Material> material);
     std::shared_ptr<Material> getMaterial() const;
-    short getId();
+    short getId() const;
     void setPosition(const Vector3& vector3);
 
 protected:
