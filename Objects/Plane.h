@@ -18,6 +18,7 @@ class Plane : public Object {
 
                         //METHODS
         HitInfo hit (const Ray& ray) const override;
+        std::string getTypeString() const override;
     private:
         Vector3 _p0;
         Vector3 _normal;

@@ -7,7 +7,8 @@
 #include <iostream>
 #include "../Image/Image.h"
 #include "../Json/json.hpp"
-
+#include <emscripten/html5.h>
+#include <sstream>
 class Color {
 public:
     // Static predefined colors
@@ -30,7 +31,7 @@ public:
 
     // Method to get color string
     std::string getColorString() const;
-
+    static Color fromColorString(std::string colorString);
     // Setter method
     void setColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha);
 

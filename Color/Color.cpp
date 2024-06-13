@@ -54,6 +54,37 @@ std::string Color::getColorString() const {
            std::to_string(this->alpha_value) + ")";
 }
 
+
+    Color Color::fromColorString(std::string colorString) {
+        std::string valueString = colorString.substr(5, 18);
+
+        std::vector<int> values;
+        std::stringstream ss(valueString);
+        std::string token;
+
+        while (std::getline(ss, token, ',')) {
+            values.push_back(std::stoi(token));
+        }
+
+        if (values.size() != 4) {
+            // Handle error if the number of values is not 4
+            throw std::runtime_error("Invalid color string format");
+        }
+        Uint8 red,green,blue,alpha;
+        try
+        {
+            red = static_cast<Uint8>(values[0]);
+            green = static_cast<Uint8>(values[1]);
+            blue = static_cast<Uint8>(values[2]);
+            alpha = static_cast<Uint8>(values[3]);
+        }catch(std::exception ex)
+        {
+            emscripten_log(EM_LOG_CONSOLE, "Exception thrown :%s", ex.what());
+        }
+        return Color(values[0], values[1], values[2], values[3]);
+    }
+
+
 // Overloaded multiplication operator
 Color Color::operator*(float value)  {
     Uint8 newRed = static_cast<Uint8>(red_value * value);

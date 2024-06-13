@@ -23,6 +23,11 @@
         return hitInfo;
     }
 
+    std::string Sphere::getTypeString() const
+    {
+        return "Sphere";
+    }
+
     void Sphere::setCenter(const Vector3 &center) {
         this->center = center;
     }

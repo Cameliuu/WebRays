@@ -43,7 +43,46 @@
       from {transform: rotate(0deg);}
       to {transform: rotate(360deg);}
     }
-
+    .sphere-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
+    }
+    .sphere-properties {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 10px;
+      width: 300px;
+      background-color: #f9f9f9;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .sphere-properties p, .sphere-properties label {
+      margin: 5px 0;
+    }
+    .sphere-properties input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    .sphere-properties button {
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .sphere-properties button:hover {
+      background-color: #0056b3;
+    }
+    .sphere-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>

@@ -14,6 +14,7 @@ public:
     Object(Material&, short id);
     Object(std::shared_ptr<Material> material, short id);
     virtual HitInfo hit(const Ray& ray) const = 0;
+    virtual std::string getTypeString() const =0;
     void setMaterial(std::shared_ptr<Material> material);
     std::shared_ptr<Material> getMaterial() const;
     short getId() const;

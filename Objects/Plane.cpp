@@ -54,4 +54,9 @@ HitInfo Plane::hit(const Ray& ray) const
     return hit;
 }
 
+std::string Plane::getTypeString() const
+{
+    return "Plane";
+}
+
 

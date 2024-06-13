@@ -12,6 +12,7 @@ class Sphere : public Object {
         Sphere(const Vector3 &center, const float &radius, std::shared_ptr<Material> material , short id);
         Sphere(const Vector3 &center, const float &radius , short id);
         HitInfo hit (const Ray& ray) const override;
+        std::string getTypeString() const override;
         void setCenter(const Vector3& center);
         void setRadius(const float& radius);
         Vector3 getCenter() const ;

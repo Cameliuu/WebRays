@@ -43,6 +43,7 @@ EMSCRIPTEN_BINDINGS(color_module) {
         .property("red",&Color::getRedValue)
         .property("green",&Color::getGreenValue)
         .property("blue", &Color::getBlueValue)
+        .class_function("fromColorString", &Color::fromColorString)
         .property("alpha", &Color::getAlphaValue);
     class_<Material>("Material")
         .constructor<Color, Color, Color, float, float>()
@@ -61,7 +62,8 @@ EMSCRIPTEN_BINDINGS(color_module) {
         .constructor<Vector3,float,Material&,short>()
         .smart_ptr<std::shared_ptr<Sphere>>("Sphere")
         .property("radius", &Sphere::getRadius)
-        .property("center", &Sphere::getCenter, &Sphere::setCenter);
+        .property("center", &Sphere::getCenter, &Sphere::setCenter)
+        .function("getTypeString", &Sphere::getTypeString);
     class_<Scene>("Scene")
         .smart_ptr<std::shared_ptr<Scene>>("Scene");
     class_<App>("App")
@@ -86,7 +88,7 @@ int main() {
     App app = App();
     app.initialize(1280,720);
     testobjs = App::instance->getScene()->getObjects();
-    //emscripten_set_main_loop(App::instance->staticMainLoop,0,1);
+    emscripten_set_main_loop(App::instance->staticMainLoop,0,1);
 
     printObjectsSize();
     emscripten_set_click_callback("#myButton", nullptr, EM_TRUE, button_click_callback);
