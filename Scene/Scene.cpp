@@ -6,8 +6,16 @@
 #include "../Lights/DirectionalLight.h"
 #include "../Objects/Plane.h"
 
+inline float fast_rand() {
+    static thread_local uint32_t seed = 123456789;
+    seed ^= seed << 13;
+    seed ^= seed >> 17;
+    seed ^= seed << 5;
+    return seed / float(UINT32_MAX);
+}
+
 void Scene::render(Image* image) {
-            const int samples_per_pixel = 16; // Number of samples per pixel for anti-aliasing
+            const int samples_per_pixel = 4; // Number of samples per pixel for anti-aliasing
     std::srand(static_cast<unsigned int>(std::time(0))); // Seed the random number generator
 
     for (int x = 0; x < width; ++x) {
@@ -19,8 +27,8 @@ void Scene::render(Image* image) {
             // Take multiple samples per pixel
             for (int s = 0; s < samples_per_pixel; ++s) {
                 // Generate random offsets for supersampling
-                float u = (x + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX) + 1)) / (width - 1);
-                float v = (y + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX) + 1)) / (height - 1);
+                float u = (x + static_cast<float>(fast_rand()) / (static_cast<float>(RAND_MAX) + 1)) / (width - 1);
+                float v = (y + static_cast<float>(fast_rand()) / (static_cast<float>(RAND_MAX) + 1)) / (height - 1);
 
                 Ray ray = camera.shootRay(u, v);
                 Color color = traceRay(ray, 4); // Start tracing the primary ray with a depth of 4

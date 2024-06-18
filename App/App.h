@@ -15,6 +15,7 @@ class App{
         void mainLoop();
         std::shared_ptr<Scene> getScene() const;
         static void staticMainLoop();
+        std::atomic<bool> startRendering;
         std::atomic<bool> renderingDone;
         std::atomic<bool> renderingStarted;
         bool isInitialized() const;

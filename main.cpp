@@ -30,7 +30,19 @@ void updateSphere(Sphere sph)
 
     testobjs = App::instance->getScene()->getObjects();
 }
+bool getStartRender()
+{
+    return App::instance->startRendering;
+}
+bool getRenderingStarted()
+{
+    return App::instance->renderingStarted;
+}
+void switchRender()
+{
+    App::instance->startRendering = !App::instance->startRendering;
 
+}
 EMSCRIPTEN_BINDINGS(color_module) {
     class_<Vector3>("Vector3")
        .constructor<float, float, float>()
@@ -77,6 +89,9 @@ EMSCRIPTEN_BINDINGS(color_module) {
     function("getObjs", &getObjs);
     function("printObjectsSize", &printObjectsSize);
     function("updateSphere",&updateSphere);
+    function("getStartRender", &getStartRender);
+    function("getRenderingStarted", &getRenderingStarted);
+    function("switchRender", &switchRender);
 }
 EM_BOOL button_click_callback(int eventType, const EmscriptenMouseEvent* e, void* userData)
 {

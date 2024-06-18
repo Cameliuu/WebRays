@@ -22,11 +22,13 @@ App* App::instance = nullptr;
 std::string App::configFile = "materials.json";
 std::atomic<bool> App::loadingDone = false;
 bool App::initialize(int width, int height) {
+        startRendering = false;
         if(SDL_Init(SDL_INIT_VIDEO)!=0)
         {
             std::cout << "[ ! ] SDL initialization failed\n";
             return false;
         }
+        SDL_SetHint(SDL_HINT_EMSCRIPTEN_KEYBOARD_ELEMENT, "#canvas");
         if(SDL_CreateWindowAndRenderer(width, height,0,&window,&renderer)!=0)
         {
             std::cout << "[ ! ] Failed to create window and renderer\n";
@@ -52,7 +54,7 @@ void App::mainLoop() {
 
 
 
-    if (!renderingStarted) {
+    if (!renderingStarted && startRendering) {
         // Start the rendering thread only if it hasn't been started yet
         pthread_t renderThreadId;
         int rc = pthread_create(&renderThreadId, NULL, renderThread, &image);
@@ -74,6 +76,7 @@ void App::mainLoop() {
 
         // Reset renderingStarted if you want to render again
         renderingStarted = false;
+        startRendering = false;
 
     }
 
@@ -120,39 +123,11 @@ void App::handleEvents() {
         if (event.type == SDL_QUIT) {
             isRunning = false;
         }
-        else if(event.type == SDL_KEYDOWN) {
-            emscripten_out("Intra pe keydown");
-            Camera& camera = App::instance->getScene()->getCamera();
-            Vector3 currentPos = camera.getPosition();
-            switch (event.key.keysym.sym) {
-                case SDLK_a: // Left
-                    camera.setPoisitionX(currentPos.GetX()-0.1f);
-                    break;
-                case SDLK_d: // Right
-                    camera.setPoisitionX(currentPos.GetX()+0.1f);
-                    break;
-                case SDLK_w: // Up
-                    camera.setPoisitionZ(currentPos.GetZ()-0.1f);
-                    break;
-                case SDLK_s: // Down
-                    camera.setPoisitionZ(currentPos.GetZ()+0.1f);
-                    break;
-                case SDLK_SPACE:
-                    if (event.key.keysym.mod & KMOD_SHIFT) {
-                        // Shift is down, so move camera up
-                        camera.setPoisitionY(currentPos.GetY() + 0.1f);
-                    } else {
-                        // Shift is not down, move camera down
-                        camera.setPoisitionY(currentPos.GetY() - 0.1f);
-                    }
-                    break;
 
-
-            }
         }
 
     }
-}
+
 
 std::shared_ptr<Scene> App::getScene() const{
     return this->scene;
