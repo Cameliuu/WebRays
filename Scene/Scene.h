@@ -25,6 +25,7 @@ class Scene {
       void initialize(Image* image);
       Camera& getCamera();
      std::vector<std::shared_ptr<Object>>& getObjects();
+     std::vector<std::shared_ptr<PointLight>>& getLights();
     Color computeBRDF(HitInfo hit_info);
     float computeD(Vector3 surfaceNormal, Vector3 halfwayVector, float alpha);
     float G1(Vector3 N, Vector3 X, float alpha);

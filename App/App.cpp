@@ -21,7 +21,8 @@ App* App::instance = nullptr;
 
 std::string App::configFile = "materials.json";
 std::atomic<bool> App::loadingDone = false;
-bool App::initialize(int width, int height) {
+bool App::initialize() {
+    int width=config->getWidth(), height = config->getHeight();
         startRendering = false;
         if(SDL_Init(SDL_INIT_VIDEO)!=0)
         {
@@ -39,7 +40,7 @@ bool App::initialize(int width, int height) {
         this->width = width;
         this->height = height;
         isRunning = true;
-        image.initialize(1280,720,this->renderer);
+        image.initialize(width,height,this->renderer);
         scene->initialize(&image);
 
 
@@ -95,6 +96,16 @@ void App::mainLoop() {
 
 void App::staticMainLoop() {
     App::instance->mainLoop();
+}
+
+std::shared_ptr<Config> App::getConfig() const
+{
+    return this->config;
+}
+
+void App::setConfig(Config& config)
+{
+    this->config = std::make_shared<Config>(config);
 }
 
 bool App::isInitialized() const

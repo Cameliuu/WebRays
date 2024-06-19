@@ -5,6 +5,8 @@
 #include "emscripten/bind.h"
 using namespace emscripten;
 std::vector<std::shared_ptr<Object>> testobjs;
+std::vector<std::shared_ptr<PointLight>> testLights;
+std::shared_ptr<Config> config;
 App* getAppInstance()
 {
     return App::instance;
@@ -43,8 +45,22 @@ void switchRender()
     App::instance->startRendering = !App::instance->startRendering;
 
 }
+void addSphere(Sphere& sph)
+{
+    App::instance->getScene()->getObjects().push_back(std::make_shared<Sphere>(sph));
+    testobjs.push_back(std::make_shared<Sphere>(sph));
+}
+std::shared_ptr<Config> getConfig()
+{
+    return App::instance->getConfig();
+}
+void updateConfig(Config& config)
+{
+    App::instance->setConfig(config);
+}
 EMSCRIPTEN_BINDINGS(color_module) {
     class_<Vector3>("Vector3")
+
        .constructor<float, float, float>()
        .property("x", &Vector3::GetX, &Vector3::SetX)
        .property("y", &Vector3::GetY, &Vector3::SetY)
@@ -80,18 +96,34 @@ EMSCRIPTEN_BINDINGS(color_module) {
         .smart_ptr<std::shared_ptr<Scene>>("Scene");
     class_<App>("App")
         .property("Scene", &App::getScene)
-        .property("initialized", &App::isInitialized);
+        .property("initialized", &App::isInitialized)
+        .property("config",&App::getConfig);
+    class_<PointLight>("PointLight")
+        .property("position", &PointLight::getPosition)
+        .property("color", &PointLight::getColor);
+    class_<Config>("Config")
+        .constructor<int,int,Color,int>()
+        .property("width",&Config::getWidth)
+        .property("height",&Config::getHeight)
+        .property("color", &Config::getColor)
+        .property("aaSamplings",&Config::getAASamplings)
+        .smart_ptr<std::shared_ptr<Config>>("Config");
+
 
     register_vector<std::shared_ptr<Material>>("Materials");
     register_vector<std::shared_ptr<Object>>("Objects");
+    register_vector<std::shared_ptr<PointLight>>("PointLights");
 
     function("getAppInstace",&getAppInstance, allow_raw_pointers());
     function("getObjs", &getObjs);
+    function("addSphere", &addSphere);
     function("printObjectsSize", &printObjectsSize);
     function("updateSphere",&updateSphere);
     function("getStartRender", &getStartRender);
     function("getRenderingStarted", &getRenderingStarted);
     function("switchRender", &switchRender);
+    function("getConfig", &getConfig);
+    function("updateConfig", &updateConfig);
 }
 EM_BOOL button_click_callback(int eventType, const EmscriptenMouseEvent* e, void* userData)
 {
@@ -101,8 +133,11 @@ EM_BOOL button_click_callback(int eventType, const EmscriptenMouseEvent* e, void
 int main() {
 
     App app = App();
-    app.initialize(1280,720);
+    Config config(1280,720,Color::Black,4);
+    app.setConfig(config);
+    app.initialize();
     testobjs = App::instance->getScene()->getObjects();
+    testLights = App::instance->getScene()->getLights();
     emscripten_set_main_loop(App::instance->staticMainLoop,0,1);
 
     printObjectsSize();

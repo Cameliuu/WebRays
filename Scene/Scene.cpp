@@ -15,7 +15,7 @@ inline float fast_rand() {
 }
 
 void Scene::render(Image* image) {
-            const int samples_per_pixel = 4; // Number of samples per pixel for anti-aliasing
+            const int samples_per_pixel = App::instance->getConfig()->getAASamplings(); // Number of samples per pixel for anti-aliasing
     std::srand(static_cast<unsigned int>(std::time(0))); // Seed the random number generator
 
     for (int x = 0; x < width; ++x) {
@@ -91,37 +91,37 @@ Color Scene::traceRay(const Ray& ray, int depth) {
             Color ambient = light->getColor() * closest_hit_info.getMaterial()->getAmbient() * closest_hit_info.getMaterial()->getAmbientStrength();
             final_color = final_color + ambient;
 
-
-
             bool inShadow = false;
 
+            Vector3 lightDir = (light->getPosition() - closest_hit_info.getT1WorldPost()).Normalize();
+            float distance = (light->getPosition() - closest_hit_info.getT1WorldPost()).Magnitude();
 
+            // Calculate attenuation
+            float attenuation = 1.0f / (light->getAttenuationConstant() + light->getAttenuationLinear() * distance + light->getAttenuationQuadratic() * distance * distance);
 
-                Vector3 lightDir = (light->getPosition() - closest_hit_info.getT1WorldPost()).Normalize();
+            // Diffuse
+            Vector3 normal = closest_hit_info.getT1Normal().Normalize();
+            float diff = std::max(normal.Dot(lightDir), 0.0f);
+            Color diffuse = light->getColor() * (closest_hit_info.getMaterial()->getDiffuse() * diff);
 
+            // Specular
+            Vector3 viewDir = (camera.getPosition() - closest_hit_info.getT1WorldPost()).Normalize();
+            lightDir = -lightDir;
+            Vector3 reflectDir = (normal * 2.0f * normal.Dot(lightDir)) - lightDir;
+            float spec = pow(std::max(viewDir.Dot(reflectDir), 0.0f), closest_hit_info.getMaterial()->getShininess());
+            Color specular = light->getColor() * (closest_hit_info.getMaterial()->getSpecular() * spec);
 
-                // Diffuse
-                Vector3 normal = closest_hit_info.getT1Normal().Normalize();
-                float diff = std::max(normal.Dot(lightDir), 0.0f);
-                Color diffuse = light->getColor() * (closest_hit_info.getMaterial()->getDiffuse() * diff);
-
-                //Specular
-                Vector3 viewDir = (camera.getPosition() - closest_hit_info.getT1WorldPost()).Normalize();
-                Vector3 reflectDir = (normal * (normal.Dot(lightDir)) * 2.0f) - lightDir;
-                float spec = pow(std::max(viewDir.Dot(reflectDir), 0.0f), closest_hit_info.getMaterial()->getShininess());
-                Color specular = light->getColor() * (closest_hit_info.getMaterial()->getSpecular() * spec);
-
-
-                final_color = final_color + diffuse + specular;
-
+            // Apply attenuation to diffuse and specular components
+            final_color = final_color + (diffuse) * attenuation;
         }
 
         return final_color;
     }
 
     // Return background color if no hit
-    return Color(125, 0, 0, 255);
+    return App::instance->getConfig()->getColor();
 }
+
 
 void Scene::load_from_config_file()
 {
@@ -180,7 +180,7 @@ void Scene::initialize(Image* image) {
     }
     // Create and initialize the materials
 
-    Vector3 lightPos =  Vector3(-0.7f, -0.2f, -1.0f);
+    Vector3 lightPos =  Vector3(0.7f, -0.2f, 1);
     // Simulate creating the spheres
     Vector3 sphereCenter1(0.35f, 0.0f, -1.0f); // Position the sphere further away
     Vector3 sphereCenter2(-0.35f, 0.4f, -1.0f); // Position the sphere further away
@@ -189,7 +189,7 @@ void Scene::initialize(Image* image) {
     float sphereRadius = 0.4f;
 
 
-    objects.push_back(std::make_shared<Sphere>(lightPos,0.1f,std::make_shared<Material>(Material(Color::Red,Color::Red,Color::White,256,12)),7));
+    objects.push_back(std::make_shared<Sphere>(lightPos,0.1f,std::make_shared<Material>(Material(Color::Red,Color::Red,Color::White,256,0.2)),7));
    // objects.push_back(std::make_shared<Plane>(Vector3(-3.0f, 1.0f, 3.0f), Vector3(-1.0f, 0.0f, 0.0f), materials.at(1), 5));
   // objects.push_back(std::make_shared<Plane>(Vector3(0.0f, -1.0f, 2.0f), Vector3(0.0f, 1.0f, 0.0f), materials.at(1), 2)); // Floor
    // objects.push_back(std::make_shared<Plane>(Vector3(0.0f, 1.0f, 2.0f), Vector3(0.0f, -1.0f, 0.0f), materials.at(1), 3)); // Ceiling
@@ -205,7 +205,7 @@ void Scene::initialize(Image* image) {
     // Create and initialize the light
 
 
-    this->lights.push_back(std::make_shared<PointLight>(lightPos,Color::White));
+    this->lights.push_back(std::make_shared<PointLight>(lightPos,Color::White,1.0f,0.09f,0.032f));
 
     // Create and initialize the camera
     Vector3 origin = Vector3(0.0f, 0.0f, 1.0f); // Move the camera back
@@ -227,4 +227,10 @@ Camera& Scene::getCamera() {
 
  std::vector<std::shared_ptr<Object>>& Scene::getObjects() {
     return this->objects;
+}
+
+std::vector<std::shared_ptr<PointLight>>& Scene::getLights()
+{
+
+    return this->lights;
 }
