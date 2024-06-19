@@ -5,12 +5,40 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Emscripten-Generated Code</title>
   <style>
-    .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
-    textarea.emscripten { font-family: monospace; width: 80%; }
-    div.emscripten { text-align: center; }
-    div.emscripten_border { border: 1px solid black; }
-    /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
-    canvas.emscripten { border: 0px none; background-color: black; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    .emscripten {
+      padding-right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    textarea.emscripten {
+      font-family: monospace;
+      width: 80%;
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      border: 1px solid #333;
+    }
+
+    div.emscripten {
+      text-align: center;
+    }
+
+    div.emscripten_border {
+      border: 1px solid #333;
+    }
+
+    canvas.emscripten {
+      border: 0px none;
+      background-color: #1e1e1e;
+    }
 
     .spinner {
       height: 50px;
@@ -20,72 +48,206 @@
       -moz-animation: rotation .8s linear infinite;
       -o-animation: rotation .8s linear infinite;
       animation: rotation 0.8s linear infinite;
-      border-left: 10px solid rgb(0,150,240);
-      border-right: 10px solid rgb(0,150,240);
-      border-bottom: 10px solid rgb(0,150,240);
-      border-top: 10px solid rgb(100,0,200);
+      border-left: 10px solid #00aced;
+      border-right: 10px solid #00aced;
+      border-bottom: 10px solid #00aced;
+      border-top: 10px solid #6400c8;
       border-radius: 100%;
-      background-color: rgb(200,100,250);
+      background-color: #c864fa;
     }
+
     @-webkit-keyframes rotation {
-      from {-webkit-transform: rotate(0deg);}
-      to {-webkit-transform: rotate(360deg);}
+      from { -webkit-transform: rotate(0deg); }
+      to { -webkit-transform: rotate(360deg); }
     }
+
     @-moz-keyframes rotation {
-      from {-moz-transform: rotate(0deg);}
-      to {-moz-transform: rotate(360deg);}
+      from { -moz-transform: rotate(0deg); }
+      to { -moz-transform: rotate(360deg); }
     }
+
     @-o-keyframes rotation {
-      from {-o-transform: rotate(0deg);}
-      to {-o-transform: rotate(360deg);}
+      from { -o-transform: rotate(0deg); }
+      to { -o-transform: rotate(360deg); }
     }
+
     @keyframes rotation {
-      from {transform: rotate(0deg);}
-      to {transform: rotate(360deg);}
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .config-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .config-form {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        width: 300px;
+    }
+
+    .config-form label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .config-form input[type="text"],
+    .config-form input[type="color"],
+    .config-form input[type="number"] {
+        width: calc(100% - 20px);
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .config-form button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fb9903;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .config-form button:hover {
+        background-color: #0056b3;
     }
     .sphere-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 20px;
+      margin-top: 20px;
     }
+
     .sphere-properties {
-      border: 1px solid #ccc;
-      padding: 20px;
-      margin: 10px;
-      width: 300px;
-      background-color: #f9f9f9;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-    }
-    .sphere-properties p, .sphere-properties label {
-      margin: 5px 0;
-    }
-    .sphere-properties input {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-    .sphere-properties button {
+      border: 1px solid #333;
       padding: 10px;
-      background-color: #007BFF;
-      color: #fff;
-      border: none;
-      cursor: pointer;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: #1e1e1e;
     }
-    .sphere-properties button:hover {
-      background-color: #0056b3;
-    }
+
     .sphere-title {
-      font-size: 24px;
       font-weight: bold;
       margin-bottom: 10px;
+    }
+
+    label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="color"] {
+      width: calc(100% - 160px);
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #333;
+      border-radius: 3px;
+      background-color: #333;
+      color: #e0e0e0;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffa200;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .form-container {
+      border: 1px solid #333;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #1e1e1e;
+      margin-top: 20px;
+    }
+
+    .form-container form {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .form-container label {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .form-container input {
+      width: calc(100% - 10px);
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #333;
+      color: #e0e0e0;
+    }
+
+    .form-container button {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    @keyframes changeCase {
+      0% { content: "r"; }
+      10% { content: "R"; }
+      20% { content: "e"; }
+      30% { content: "E"; }
+      40% { content: "n"; }
+      50% { content: "N"; }
+      60% { content: "d"; }
+      70% { content: "D"; }
+      80% { content: "e"; }
+      90% { content: "E"; }
+      100% { content: "r"; }
+    }
+
+    .rendering-animation {
+      display: inline-block;
+      font-size: 24px;
+      font-weight: bold;
+      animation: changeCase 1s steps(10, end) infinite;
+    }
+
+    .ascii-art {
+      font-family: monospace;
+      white-space: pre;
+      text-align: center;
+      color: #ef9b00;
+      font-size: 30px;
     }
   </style>
 </head>
 <body>
+
+<div class="ascii-art">
+<pre>
+__        __   _     ____
+\ \      / /__| |__ |  _ \ __ _ _   _ ___
+ \ \ /\ / / _ \ '_ \| |_) / _` | | | / __|
+  \ V  V /  __/ |_) |  _ < (_| | |_| \__ \
+   \_/\_/ \___|_.__/|_| \_\__,_|\__, |___/
+                                |___/
+
+</pre>
+</div>
 
 <hr/>
 <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"><strong>emscripten</strong></center></figure>
