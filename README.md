@@ -4,7 +4,7 @@
 ## Raytracing în Browser - O Sinergie între C++ și JavaScript prin Emscripten
 
 
-Acest proiect implementează un raytracer simplu utilizând Emscripten pentru a transpila codul C++ în WebAssembly, permițând astfel rularea sa în browser. Raytracer-ul generează imagini realistice prin simularea traiectoriei razelor de lumină și calcularea interacțiunilor acestora cu obiectele din scenă. Utilizarea Emscripten facilitează accesul la performanța nativă în contextul web, permițând o experiență vizuală fluidă și detaliată direct în browser. Acest readme oferă instrucțiuni pentru configurare, compilare și rulare, alături de exemple de utilizare și capturi de ecran ale rezultatelor obținute.
+Acest proiect implementează un raytracer simplu utilizând Emscripten pentru a transpune codul C++ în WebAssembly, permițând astfel rularea sa în browser. Raytracer-ul generează imagini realistice prin simularea traiectoriei razelor de lumină și calcularea interacțiunilor acestora cu obiectele din scenă. Utilizarea Emscripten facilitează accesul la performanța nativă în contextul web, permițând o experiență vizuală fluidă și detaliată direct în browser. Acest readme oferă instrucțiuni pentru configurare, compilare și rulare.
 
 
 ## Funcționalități
@@ -100,6 +100,4 @@ Unde ```{NUME}``` este numele fisierului HTML ce va avea sa fie produs in urma c
 ```sh
 http://localhost:8080/{NUME}.html
 ```
-
-### 2. Modificare Configuratie
 
